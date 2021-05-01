@@ -1,0 +1,12 @@
+{
+  "name": "javascriptapp.client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "oidc-client": "^1.11.5"
+  }
+}
