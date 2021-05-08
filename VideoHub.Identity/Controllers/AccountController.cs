@@ -1,5 +1,7 @@
 ﻿using IdentityModel;
 using IdentityServer4;
+using IdentityServer4.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -11,8 +13,15 @@ namespace VideoHub.Identity.Controllers
     [Route("Account")]
     public class AccountController : Controller
     {
+        private readonly IIdentityServerInteractionService _interactionService;
+
+        public AccountController(IIdentityServerInteractionService interactionService)
+        {
+            _interactionService = interactionService;
+        }
+
         [HttpGet("Login")]
-        public async Task<IActionResult> Login(string returnUrl)
+        public IActionResult Login(string returnUrl)
         {
             var model = new LoginModel
             {
@@ -24,6 +33,13 @@ namespace VideoHub.Identity.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginModel model)
         {
+            // TODO: implement proper authentication using ASP.Net Identity
+            var isUserAuthenticated = model.Username == "a" && model.Password == "1";
+            if (!isUserAuthenticated)
+            {
+                return Unauthorized();
+            };
+
             var claims = new Claim[]
             {
                 new Claim(JwtClaimTypes.Subject, "12345"),
@@ -42,6 +58,14 @@ namespace VideoHub.Identity.Controllers
             await HttpContext.SignInAsync(user, null);
 
             return Redirect(model.ReturnUrl);
+        }
+
+        [HttpGet("Logout")]
+        public async Task<IActionResult> Logout(string logoutId)
+        {
+            await HttpContext.SignOutAsync();
+            var logoutContext = await _interactionService.GetLogoutContextAsync(logoutId);
+            return Redirect(logoutContext.PostLogoutRedirectUri);
         }
     }
 }

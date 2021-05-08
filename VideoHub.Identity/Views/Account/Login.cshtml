@@ -1,11 +1,13 @@
-﻿@using VideoHub.Identity.Models;
-@model LoginModel
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using VideoHub.Identity.Models;
+@model LoginModel;
 
-<form asp-controller="Account" asp-action="Login" method="post">
+<form asp-route="Login" method="post">
     <input type="hidden" asp-for="ReturnUrl" />
+
     <div>
-        <label>Username</label>
-        <input asp-for="Username" />
+        <label asp-for="Username">Username</label>
+        <input asp-for="Username" name="Username" />
     </div>
     <div>
         <label>Password</label>

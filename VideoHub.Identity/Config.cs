@@ -6,9 +6,12 @@ namespace VideoHub.Identity
 {
     public static class Config
     {
+        private const string WebClientUrl = "http://localhost:5000";
+
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
         {
             new IdentityResources.OpenId(),
+            new IdentityResources.Profile(),
         };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -24,23 +27,26 @@ namespace VideoHub.Identity
                 Scopes = { "api" }
             }
         };
-
         public static IEnumerable<Client> Clients => new Client[]
         {
+
             new Client
             {
                 ClientId = "web_client",
-                AllowedGrantTypes = GrantTypes.Implicit,
+                AllowedGrantTypes = GrantTypes.Code,
+                RequirePkce = true,
                 RequireClientSecret = false,
                 AllowAccessTokensViaBrowser = true,
                 AlwaysIncludeUserClaimsInIdToken = true,
                 AllowedScopes = new List<string>
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
                     "api"
                 },
-                RedirectUris = { "http://127.0.0.1:5501/callback.html" },
-                AllowedCorsOrigins = { "http://127.0.0.1:5501" },
+                RedirectUris = { WebClientUrl },
+                PostLogoutRedirectUris = { WebClientUrl },
+                AllowedCorsOrigins = { WebClientUrl },
             }
         };
     }
