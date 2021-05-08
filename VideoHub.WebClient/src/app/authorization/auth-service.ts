@@ -19,10 +19,6 @@ export class AuthService {
     }
 
     async authenticate(): Promise<void> {
-        if (this.isUserAuthenticated) {
-            return;
-        }
-
         this.oauthService.configure(AUTH_CONFIG);
         await this.oauthService.loadDiscoveryDocument();
         await this.oauthService.tryLoginCodeFlow();

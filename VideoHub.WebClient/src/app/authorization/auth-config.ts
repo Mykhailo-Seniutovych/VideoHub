@@ -5,7 +5,7 @@ export const AUTH_CONFIG: AuthConfig = {
     redirectUri: "http://localhost:5000",
     clientId: "web_client",
     responseType: "code",
-    scope: "openid profile",
+    scope: "openid profile api",
     oidc: true,
     showDebugInformation: true,
 };

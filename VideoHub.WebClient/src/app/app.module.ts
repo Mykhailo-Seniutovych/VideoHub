@@ -1,5 +1,6 @@
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
+import { AUTH_MODULE_CONFIG } from "./authorization";
 import { BrowserModule } from "@angular/platform-browser";
 import { HomeComponent } from "./pages/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
@@ -13,17 +14,11 @@ import { OAuthModule } from "angular-oauth2-oidc";
         HomeComponent,
     ],
     imports: [
-        OAuthModule.forRoot({
-            resourceServer: {
-                allowedUrls: ["http://localhost:5002"],
-                sendAccessToken: true
-            }
-        }),
+        OAuthModule.forRoot(AUTH_MODULE_CONFIG),
         HttpClientModule,
         BrowserModule,
         AppRoutingModule
     ],
-    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

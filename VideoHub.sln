@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoHub.Identity", "VideoHub.Identity\VideoHub.Identity.csproj", "{FD7C1575-34DC-4FE1-8052-CAAC71AEEDC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoHub.Identity", "VideoHub.Identity\VideoHub.Identity.csproj", "{FD7C1575-34DC-4FE1-8052-CAAC71AEEDC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoHub.Api", "VideoHub.Api\VideoHub.Api.csproj", "{43478BB4-4D10-4E22-8EAD-4ECE2933E081}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FD7C1575-34DC-4FE1-8052-CAAC71AEEDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD7C1575-34DC-4FE1-8052-CAAC71AEEDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD7C1575-34DC-4FE1-8052-CAAC71AEEDC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43478BB4-4D10-4E22-8EAD-4ECE2933E081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43478BB4-4D10-4E22-8EAD-4ECE2933E081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43478BB4-4D10-4E22-8EAD-4ECE2933E081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43478BB4-4D10-4E22-8EAD-4ECE2933E081}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

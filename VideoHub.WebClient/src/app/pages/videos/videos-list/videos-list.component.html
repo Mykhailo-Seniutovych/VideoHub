@@ -1,1 +1,7 @@
-videos list
+<h2>Videos</h2>
+<ul>
+    <li *ngFor="let video of videos$ | async">
+        <div>{{video.title}}</div>
+        <div>{{video.description}}</div>
+    </li>
+</ul>
