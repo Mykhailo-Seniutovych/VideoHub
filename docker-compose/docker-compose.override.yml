@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  videohub.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+  videohub.identity:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  videohub.api:
+    image: ${DOCKER_REGISTRY-}videohubapi
+    build:
+      context: .
+      dockerfile: ../VideoHub.Api/Dockerfile
+    container_name: videohub.api
+    ports:
+        - 5001:443
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/self-signed-ssl-certificate.pfx
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ../self-signed-ssl-certificate.pfx:/https/self-signed-ssl-certificate.pfx:ro
+  videohub.identity:
+    image: ${DOCKER_REGISTRY-}videohubidentity
+    build:
+      context: .
+      dockerfile: ../VideoHub.Identity/Dockerfile
+    container_name: videohub.identity
+    ports:
+        - 5002:443
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443
+      - ASPNETCORE_HTTPS_PORT=5002
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/self-signed-ssl-certificate.pfx
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ../self-signed-ssl-certificate.pfx:/https/self-signed-ssl-certificate.pfx:ro

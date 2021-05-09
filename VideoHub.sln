@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoHub.Identity", "VideoHub.Identity\VideoHub.Identity.csproj", "{FD7C1575-34DC-4FE1-8052-CAAC71AEEDC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoHub.Api", "VideoHub.Api\VideoHub.Api.csproj", "{43478BB4-4D10-4E22-8EAD-4ECE2933E081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoHub.Api", "VideoHub.Api\VideoHub.Api.csproj", "{43478BB4-4D10-4E22-8EAD-4ECE2933E081}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose\docker-compose.dcproj", "{FCB2DF79-B5CF-4D6A-874D-C419F68E629D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{43478BB4-4D10-4E22-8EAD-4ECE2933E081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43478BB4-4D10-4E22-8EAD-4ECE2933E081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43478BB4-4D10-4E22-8EAD-4ECE2933E081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCB2DF79-B5CF-4D6A-874D-C419F68E629D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB2DF79-B5CF-4D6A-874D-C419F68E629D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB2DF79-B5CF-4D6A-874D-C419F68E629D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB2DF79-B5CF-4D6A-874D-C419F68E629D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
