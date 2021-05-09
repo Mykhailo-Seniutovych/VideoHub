@@ -35,3 +35,16 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ../self-signed-ssl-certificate.pfx:/https/self-signed-ssl-certificate.pfx:ro
+  videohub.webclient:
+    image: ${DOCKER_REGISTRY-}videohub.webclient
+    build:
+      context: ../VideoHub.WebClient
+      dockerfile: ./Dockerfile
+    container_name: videohub.webclient
+    environment:
+      NODE_ENV: development
+    ports:
+      - 5000:5000
+    volumes:
+      - "/app/node_modules"
+      - "../VideoHub.WebClient:/app"

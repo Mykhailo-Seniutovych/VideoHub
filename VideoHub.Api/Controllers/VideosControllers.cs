@@ -12,7 +12,7 @@ namespace VideoHub.Api.Controllers
         {
             new Video
             {
-                VideoId = 1,
+                VideoId = 123,
                 Title = "How does OAuth2 work?",
                 Description = "Short video abouth OAuth2 protocol specifications and how it works"
             },

@@ -1,6 +1,5 @@
 import { AuthService } from "./authorization";
 import { Component, OnInit } from "@angular/core";
-import { PAGE_ROUTES } from "./utils";
 import { Router } from "@angular/router";
 
 @Component({
@@ -14,16 +13,16 @@ export class AppComponent implements OnInit {
     constructor(
         private readonly authService: AuthService,
         private readonly router: Router) {
-
     }
 
     async ngOnInit(): Promise<void> {
-        await this.authService.authenticate();
-        this.username = this.authService.userFullName;
-        await this.router.navigateByUrl(PAGE_ROUTES.videos);
+        this.username = "Joker";
+        //await this.authService.authenticate();
+        //this.username = this.authService.userFullName;
+        //await this.router.navigateByUrl(PAGE_ROUTES.videos);
     }
 
     async logout(): Promise<void> {
-        await this.authService.logout();
+        //await this.authService.logout();
     }
 }
