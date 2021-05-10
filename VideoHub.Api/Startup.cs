@@ -1,22 +1,30 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net.Http;
 
 namespace VideoHub.Api
 {
     public class Startup
     {
+        //TODO: Move to config
+        private const string InternalIdentityUrl = "https://videohub.identity:443";
+        private const string ExternalWebClientUrl = "http://localhost:5000";
+
+        private readonly IWebHostEnvironment _environment;
+        public Startup(IWebHostEnvironment environment)
+        {
+            _environment = environment;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
             services
                 .AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
-                {
-                    options.Authority = "https://localhost:5002/";
-                    options.Audience = "api";
-                });
+                .AddJwtBearer("Bearer", ConfigureJwtOptions);
             services.AddAuthorization();
             services.AddControllers();
         }
@@ -27,7 +35,7 @@ namespace VideoHub.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseCors(options => options
-                    .WithOrigins("http://localhost:5000")
+                    .WithOrigins(ExternalWebClientUrl)
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             }
@@ -42,6 +50,21 @@ namespace VideoHub.Api
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void ConfigureJwtOptions(JwtBearerOptions options)
+        {
+            options.Authority = InternalIdentityUrl;
+            options.Audience = "api";
+
+            // ignore SSL validation of identity server in development
+            if (_environment.IsDevelopment())
+            {
+                options.BackchannelHttpHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (a, b, c, d) => true
+                };
+            }
         }
     }
 }

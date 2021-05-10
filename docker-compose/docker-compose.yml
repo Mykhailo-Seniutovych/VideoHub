@@ -27,7 +27,7 @@ services:
     ports:
         - 5002:443
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443
       - ASPNETCORE_HTTPS_PORT=5002
       - ASPNETCORE_Kestrel__Certificates__Default__Password=123
@@ -42,9 +42,9 @@ services:
       dockerfile: ./Dockerfile
     container_name: videohub.webclient
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
     ports:
-      - 5000:5000
+      - 5000:443
     volumes:
       - "/app/node_modules"
       - "../VideoHub.WebClient:/app"

@@ -6,7 +6,9 @@ namespace VideoHub.Identity
 {
     public static class Config
     {
-        private const string WebClientUrl = "http://localhost:5000";
+        // TODO: Move to config
+        public const string ExternalWebClientUrl = "http://localhost:5000";
+
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
         {
@@ -44,9 +46,9 @@ namespace VideoHub.Identity
                     IdentityServerConstants.StandardScopes.Profile,
                     "api"
                 },
-                RedirectUris = { WebClientUrl },
-                PostLogoutRedirectUris = { WebClientUrl },
-                AllowedCorsOrigins = { WebClientUrl },
+                RedirectUris = { ExternalWebClientUrl },
+                PostLogoutRedirectUris = { ExternalWebClientUrl },
+                AllowedCorsOrigins = { ExternalWebClientUrl },
             }
         };
     }
