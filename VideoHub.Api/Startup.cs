@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net.Http;
+using VideoHub.Api.Extensions;
+using VideoHub.Repository.Configuration;
+using VideoHub.Repository.Interfaces;
+using VideoHub.Repository.Repositories;
 
 namespace VideoHub.Api
 {
@@ -11,7 +15,7 @@ namespace VideoHub.Api
     {
         //TODO: Move to config
         private const string InternalIdentityUrl = "https://videohub.identity:443";
-        private const string ExternalWebClientUrl = "http://localhost:5000";
+        private string[] _allowedOrigins = new[] { "http://192.168.0.112:5000", "http://localhost:5000" };
 
         private readonly IWebHostEnvironment _environment;
         public Startup(IWebHostEnvironment environment)
@@ -27,6 +31,10 @@ namespace VideoHub.Api
                 .AddJwtBearer("Bearer", ConfigureJwtOptions);
             services.AddAuthorization();
             services.AddControllers();
+
+            services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
+            services.AddSingleton<IVideosRepository, VideosRepository>();
+            services.AddDatabase();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -35,11 +43,10 @@ namespace VideoHub.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseCors(options => options
-                    .WithOrigins(ExternalWebClientUrl)
+                    .WithOrigins(_allowedOrigins)
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             }
-
 
             app.UseRouting();
 

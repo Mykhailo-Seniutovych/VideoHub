@@ -18,6 +18,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ../self-signed-ssl-certificate.pfx:/https/self-signed-ssl-certificate.pfx:ro
+
   videohub.identity:
     image: ${DOCKER_REGISTRY-}videohubidentity
     build:
@@ -35,6 +36,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ../self-signed-ssl-certificate.pfx:/https/self-signed-ssl-certificate.pfx:ro
+  
   videohub.webclient:
     image: ${DOCKER_REGISTRY-}videohub.webclient
     build:
@@ -48,3 +50,14 @@ services:
     volumes:
       - "/app/node_modules"
       - "../VideoHub.WebClient:/app"
+  
+  videohub.database:
+    image: michael400/videohub.db
+    container_name: videohub.db
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      - PGDATA=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin

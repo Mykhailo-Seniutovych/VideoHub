@@ -1,4 +1,4 @@
-﻿namespace VideoHub.Api.Models
+﻿namespace VideoHub.Repository.Models
 {
     public class Video
     {

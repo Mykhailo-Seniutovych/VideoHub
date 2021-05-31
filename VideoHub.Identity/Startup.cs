@@ -26,7 +26,7 @@ namespace VideoHub.Identity
             {
                 app.UseDeveloperExceptionPage();
                 app.UseCors(options => options
-                    .WithOrigins(Config.ExternalWebClientUrl)
+                    .WithOrigins(Config.WebClientUrls)
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             }

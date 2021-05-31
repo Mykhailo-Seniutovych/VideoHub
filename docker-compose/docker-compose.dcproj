@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>fcb2df79-b5cf-4d6a-874d-c419f68e629d</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>https://localhost:5001</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:5000/</DockerServiceUrl>
     <DockerServiceName>videohub.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

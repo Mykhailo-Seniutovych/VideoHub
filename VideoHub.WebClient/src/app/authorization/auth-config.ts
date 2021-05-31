@@ -1,9 +1,9 @@
 import { AuthConfig } from "angular-oauth2-oidc";
+import { URLS } from "../utils";
 
 export const AUTH_CONFIG: AuthConfig = {
-    // TODO: Move urls to a config
-    issuer: "https://localhost:5002",
-    redirectUri: "http://localhost:5000",
+    issuer: URLS.IDENTITY,
+    redirectUri: URLS.WEB_CLIENT,
     clientId: "web_client",
     responseType: "code",
     scope: "openid profile api",
