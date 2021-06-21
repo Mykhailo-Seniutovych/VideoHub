@@ -1,7 +1,16 @@
-<h2>Videos</h2>
-<ul>
-    <li *ngFor="let video of videos$ | async">
-        <div>{{video.title}}</div>
-        <div>{{video.description}}</div>
-    </li>
-</ul>
+<mat-card class="video-container"
+          *ngFor="let video of videos$ | async">
+    <img mat-card-image
+         [src]="video.imagePreviewUrl"
+         alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <mat-card-title>{{video.title}}</mat-card-title>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-card-subtitle class="channel">
+            <img [src]="video.channelImageUrl"
+                 class="channel-img" />
+            <span class="channel-name">Awesome Coding</span>
+        </mat-card-subtitle>
+    </mat-card-footer>
+</mat-card>

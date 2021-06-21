@@ -1,0 +1,22 @@
+<img src="./assets/images/logo.png"
+     class="logo" />
+
+<div class="search-field">
+    <input type="search"
+           placeholder="Search videos" />
+    <button mat-button>
+        <mat-icon>search</mat-icon>
+    </button>
+</div>
+
+<div class="profile">
+    <div *ngIf="(user$ | async) as user">
+        <span>{{user.fullName}}</span>
+    </div>
+    <button mat-button
+            color="primary"
+            class="logout-btn"
+            (click)="logout()">
+        <mat-icon>logout</mat-icon>
+    </button>
+</div>

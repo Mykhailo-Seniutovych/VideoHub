@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+
+$primary-color: mat-color($mat-green, 500);
+$primary-color-light: mat-color($mat-green, 300);
+$accent-color: mat-color($mat-yellow, 500);
+
+$page-padding: 24px;

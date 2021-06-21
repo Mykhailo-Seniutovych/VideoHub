@@ -18,11 +18,6 @@ export class AppComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
         await this.authService.authenticate();
-        this.username = this.authService.userFullName;
         await this.router.navigateByUrl(PAGE_ROUTES.videos);
-    }
-
-    async logout(): Promise<void> {
-        await this.authService.logout();
     }
 }
