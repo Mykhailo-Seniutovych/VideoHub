@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net.Http;
+using System.Reflection;
 using VideoHub.Api.Extensions;
 using VideoHub.Repository.Configuration;
 using VideoHub.Repository.Interfaces;
 using VideoHub.Repository.Repositories;
+using VideoHub.Services.Interfaces;
+using VideoHub.Services.Services;
 
 namespace VideoHub.Api
 {
@@ -34,7 +37,10 @@ namespace VideoHub.Api
 
             services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
             services.AddSingleton<IVideosRepository, VideosRepository>();
+            services.AddSingleton<IVideosService, VideosService>();
+
             services.AddDatabase();
+            services.AddAutoMapper(Assembly.Load("VideoHub.Services"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

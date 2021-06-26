@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoHub.Api", "VideoHub.Ap
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose\docker-compose.dcproj", "{FCB2DF79-B5CF-4D6A-874D-C419F68E629D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoHub.Repository", "VideoHub.Repository\VideoHub.Repository.csproj", "{2EDDC136-AE78-4CC2-B451-067C36D1E211}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoHub.Repository", "VideoHub.Repository\VideoHub.Repository.csproj", "{2EDDC136-AE78-4CC2-B451-067C36D1E211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoHub.Services", "VideoHub.Services\VideoHub.Services.csproj", "{09EFA0F3-E144-492D-AEEF-7811838BAD68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2EDDC136-AE78-4CC2-B451-067C36D1E211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EDDC136-AE78-4CC2-B451-067C36D1E211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EDDC136-AE78-4CC2-B451-067C36D1E211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09EFA0F3-E144-492D-AEEF-7811838BAD68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EFA0F3-E144-492D-AEEF-7811838BAD68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EFA0F3-E144-492D-AEEF-7811838BAD68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EFA0F3-E144-492D-AEEF-7811838BAD68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

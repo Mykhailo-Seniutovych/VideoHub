@@ -3,6 +3,6 @@ export class Video {
     title: string;
     description: string;
     imagePreviewUrl: string;
-    channelId: number;
+    channelName: string;
     channelImageUrl: string;
 }

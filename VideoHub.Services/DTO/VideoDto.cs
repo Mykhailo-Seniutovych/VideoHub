@@ -1,12 +1,12 @@
-﻿namespace VideoHub.Repository.Models
+﻿namespace VideoHub.Services.DTO
 {
-    public class Video
+    public class VideoDto
     {
         public int VideoId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string ImagePreviewUrl { get; set; }
-
-        public Channel Channel { get; set; }
+        public string ChannelName { get; set; }
+        public string ChannelImageUrl { get; set; }
     }
 }

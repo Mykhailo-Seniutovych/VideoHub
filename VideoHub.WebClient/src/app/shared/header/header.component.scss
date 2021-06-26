@@ -1,13 +1,18 @@
 @import "src/styles/variables";
 
 :host {
+    position: fixed;
+    z-index: 999;
     height: 55px;
+    width: 100%;
+    box-sizing: border-box;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 $page-padding;
-
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: $body-background-color;
 
     .logo {
         height: 100%;

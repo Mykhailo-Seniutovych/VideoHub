@@ -16,14 +16,20 @@ namespace VideoHub.Repository.Repositories
         public async Task<Video> GetVideo(int videoId)
         {
             using var dbContext = CreateDbContext();
-            var video = await dbContext.Videos.AsNoTracking().FirstAsync(v => v.VideoId == videoId);
+            var video = await dbContext.Videos
+                .AsNoTracking()
+                .Include(v => v.Channel)
+                .FirstAsync(v => v.VideoId == videoId);
             return video;
         }
 
         public async Task<List<Video>> GetVideos()
         {
             using var dbContext = CreateDbContext();
-            var videos = await dbContext.Videos.AsNoTracking().ToListAsync();
+            var videos = await dbContext.Videos
+                .AsNoTracking()
+                .Include(v => v.Channel)
+                .ToListAsync();
             return videos;
         }
     }

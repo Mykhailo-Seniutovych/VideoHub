@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VideoHub.Repository;
@@ -9,9 +10,10 @@ using VideoHub.Repository;
 namespace VideoHub.Repository.Migrations
 {
     [DbContext(typeof(VideoHubDbContext))]
-    partial class VideoHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210626095131_Channels")]
+    partial class Channels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

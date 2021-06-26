@@ -1,31 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VideoHub.Repository.Interfaces;
-using VideoHub.Repository.Models;
+using VideoHub.Services.DTO;
+using VideoHub.Services.Interfaces;
 
 namespace VideoHub.Api.Controllers
 {
     [Route("api/videos")]
     public class VideosControllers : BaseController
     {
-        private readonly IVideosRepository _videosRepository;
+        private readonly IVideosService _videosService;
 
-        public VideosControllers(IVideosRepository videosRepository)
+        public VideosControllers(IVideosService videosService)
         {
-            _videosRepository = videosRepository;
+            _videosService = videosService;
         }
 
         [HttpGet("")]
-        public async Task<List<Video>> GetVideos()
+        public async Task<List<VideoDto>> GetVideos()
         {
-            return await _videosRepository.GetVideos();
+            return await _videosService.GetVideos();
         }
 
         [HttpGet("{videoId}")]
-        public async Task<Video> GetVideo(int videoId)
+        public async Task<VideoDto> GetVideo(int videoId)
         {
-            return await _videosRepository.GetVideo(videoId);
+            return await _videosService.GetVideo(videoId);
 
         }
     }
