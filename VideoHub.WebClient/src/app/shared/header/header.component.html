@@ -2,9 +2,13 @@
      class="logo" />
 
 <div class="search-field">
-    <input type="search"
-           placeholder="Search videos" />
-    <button mat-button>
+    <input #searchInput
+           type="search"
+           placeholder="Search videos"
+           (keyup.enter)="search(searchInput.value)" />
+    <button #searchButton
+            mat-button
+            (click)="search(searchInput.value)">
         <mat-icon>search</mat-icon>
     </button>
 </div>
