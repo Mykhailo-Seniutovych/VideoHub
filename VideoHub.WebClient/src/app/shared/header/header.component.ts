@@ -1,5 +1,5 @@
 import { AuthService } from "src/app/authorization";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, ViewChild } from "@angular/core";
 import { SearchService } from "./../services/search.service";
 
 @Component({
@@ -9,11 +9,18 @@ import { SearchService } from "./../services/search.service";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+    @ViewChild("searchInput") searchInput: ElementRef;
+
+    isSearchActivated = false;
     user$ = this.authService.user$;
 
     constructor(
         private readonly authService: AuthService,
         private readonly searchService: SearchService) {
+    }
+
+    @HostBinding("class.search-activated") get valid(): boolean {
+        return this.isSearchActivated;
     }
 
     async logout(): Promise<void> {
@@ -22,5 +29,10 @@ export class HeaderComponent {
 
     search(value: string): void {
         this.searchService.setValue(value);
+    }
+
+    toggleSearch(): void {
+        this.isSearchActivated = !this.isSearchActivated;
+        setTimeout(() => this.searchInput.nativeElement.focus());
     }
 }

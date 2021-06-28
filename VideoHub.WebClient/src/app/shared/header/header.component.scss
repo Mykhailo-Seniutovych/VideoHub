@@ -1,4 +1,5 @@
 @import "src/styles/variables";
+@import "src/styles/media";
 
 :host {
     position: fixed;
@@ -10,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 $page-padding;
+    padding: 0 0 0 $page-padding;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     background-color: $body-background-color;
 
@@ -18,20 +19,26 @@
         height: 100%;
     }
 
+    .header-menu {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-grow: 1;
+        height: 100%;
+    }
+
     .search-field {
-        height: 35px;
-        width: 35%;
-        min-width: 400px;
-        max-width: 600px;
+        height: 100%;
         display: flex;
         align-items: center;
         position: relative;
 
         > input {
+            display: none;
             height: 100%;
             flex-grow: 1;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
+            //border-radius: 5px;
             padding-left: 15px;
 
             &:focus {
@@ -42,8 +49,6 @@
 
         > button {
             height: 100%;
-            position: absolute;
-            right: 0;
         }
     }
 
@@ -52,9 +57,70 @@
         display: flex;
         align-items: center;
 
+        .username {
+            display: none;
+        }
+
         .logout-btn {
             height: 100%;
-            margin-left: 10px;
+        }
+    }
+}
+
+:host.search-activated {
+    .search-field {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+
+        width: 100%;
+        height: 100%;
+
+        > input {
+            display: block;
+        }
+
+        > button {
+            position: absolute;
+            right: 0;
+        }
+    }
+}
+
+@include desktop {
+    :host {
+        .search-field {
+            height: 40px;
+
+            > input {
+                visibility: hidden;
+                border-radius: 5px;
+                width: 10px;
+                transition: width 1s;
+            }
+            > button {
+                right: 0;
+            }
+        }
+        .profile {
+            .username {
+                display: flex;
+                margin: 0 10px;
+            }
+        }
+    }
+
+    :host.search-activated {
+        .search-field {
+            position: relative;
+            width: 500px;
+            height: 40px;
+
+            > input {
+                visibility: visible;
+                width: 650px;
+                transition: width 1s;
+            }
         }
     }
 }

@@ -1,26 +1,28 @@
 <img src="./assets/images/logo.png"
      class="logo" />
 
-<div class="search-field">
-    <input #searchInput
-           type="search"
-           placeholder="Search videos"
-           (keyup.enter)="search(searchInput.value)" />
-    <button #searchButton
-            mat-button
-            (click)="search(searchInput.value)">
-        <mat-icon>search</mat-icon>
-    </button>
-</div>
-
-<div class="profile">
-    <div *ngIf="(user$ | async) as user">
-        <span>{{user.fullName}}</span>
+<div class="header-menu">
+    <div class="search-field">
+        <input #searchInput
+               type="search"
+               placeholder="Search videos"
+               (keyup.enter)="search(searchInput.value)" />
+        <button #searchButton
+                mat-button
+                (click)="toggleSearch()">
+            <mat-icon>search</mat-icon>
+        </button>
     </div>
-    <button mat-button
-            color="primary"
-            class="logout-btn"
-            (click)="logout()">
-        <mat-icon>logout</mat-icon>
-    </button>
+    <div class="profile">
+        <div *ngIf="(user$ | async) as user"
+             class="username">
+            <span>{{user.fullName}}</span>
+        </div>
+        <button mat-button
+                color="primary"
+                class="logout-btn"
+                (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
 </div>
