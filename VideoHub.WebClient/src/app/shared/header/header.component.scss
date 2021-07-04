@@ -39,7 +39,7 @@
             flex-grow: 1;
             border: 1px solid rgba(0, 0, 0, 0.2);
             //border-radius: 5px;
-            padding-left: 15px;
+            padding: 0 64px 0 32px;
 
             &:focus {
                 outline-width: 0;
@@ -47,7 +47,34 @@
             }
         }
 
-        > button {
+        > .back-button {
+            position: absolute;
+            left: 0;
+            display: none;
+
+            padding: 0;
+            min-width: 32px;
+
+            height: 100%;
+        }
+
+        > .search-buttons {
+            position: absolute;
+            right: 0;
+
+            display: flex;
+
+            height: 100%;
+
+            .clear-button {
+                display: none;
+            }
+        }
+
+        > .search-buttons > * {
+            padding: 0;
+            min-width: 32px;
+
             height: 100%;
         }
     }
@@ -80,11 +107,14 @@
             display: block;
         }
 
-        > button {
-            position: absolute;
-            right: 0;
+        > .back-button {
+            display: block;
         }
     }
+}
+
+:host.search-text-filled .search-field .search-buttons .clear-button {
+    display: block;
 }
 
 @include desktop {
@@ -98,7 +128,7 @@
                 width: 10px;
                 transition: width 1s;
             }
-            > button {
+            > .search-buttons {
                 right: 0;
             }
         }

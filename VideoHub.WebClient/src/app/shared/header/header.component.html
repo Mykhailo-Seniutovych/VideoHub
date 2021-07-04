@@ -3,15 +3,29 @@
 
 <div class="header-menu">
     <div class="search-field">
+        <button mat-button
+                class="back-button"
+                (click)="onBackClicked()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
         <input #searchInput
                type="search"
                placeholder="Search videos"
+               [value]="searchValue"
+               (input)="onInputChange($event)"
                (keyup.enter)="search(searchInput.value)" />
-        <button #searchButton
-                mat-button
-                (click)="toggleSearch()">
-            <mat-icon>search</mat-icon>
-        </button>
+        <div class="search-buttons">
+            <button mat-button
+                    class="clear-button"
+                    (click)="onClearClicked()">
+                <mat-icon>close</mat-icon>
+            </button>
+            <button mat-button
+                    class="search-button"
+                    (click)="onSearchClicked()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
     </div>
     <div class="profile">
         <div *ngIf="(user$ | async) as user"
