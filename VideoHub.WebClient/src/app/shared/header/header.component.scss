@@ -15,8 +15,13 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     background-color: $body-background-color;
 
+    .menu-button {
+        margin-right: 10px;
+    }
+
     .logo {
         height: 100%;
+        padding: 5px 0;
     }
 
     .header-menu {
@@ -38,7 +43,6 @@
             height: 100%;
             flex-grow: 1;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            //border-radius: 5px;
             padding: 0 64px 0 32px;
 
             &:focus {
@@ -51,9 +55,6 @@
             position: absolute;
             left: 0;
             display: none;
-
-            padding: 0;
-            min-width: 32px;
 
             height: 100%;
         }
@@ -72,9 +73,6 @@
         }
 
         > .search-buttons > * {
-            padding: 0;
-            min-width: 32px;
-
             height: 100%;
         }
     }

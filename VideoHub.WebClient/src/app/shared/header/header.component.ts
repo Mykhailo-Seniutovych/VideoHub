@@ -1,5 +1,9 @@
 import { AuthService } from "src/app/authorization";
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, ViewChild } from "@angular/core";
+import { MainNavigationService } from "./../services/main-navigation.service";
+import { map } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { ScreenService } from "../services/screen.service";
 import { SearchService } from "./../services/search.service";
 
 @Component({
@@ -11,6 +15,8 @@ import { SearchService } from "./../services/search.service";
 export class HeaderComponent {
     @ViewChild("searchInput") searchInput: ElementRef;
 
+    isSmallScreen$ = this.screenService.isDesktop$.pipe(map(isDesktop => !isDesktop));
+
     user$ = this.authService.user$;
     searchValue = "";
 
@@ -19,7 +25,10 @@ export class HeaderComponent {
 
     constructor(
         private readonly authService: AuthService,
-        private readonly searchService: SearchService) {
+        private readonly searchService: SearchService,
+        private readonly navigationService: MainNavigationService,
+        private readonly screenService: ScreenService,
+        private readonly router: Router) {
     }
 
     @HostBinding("class.search-activated") get searchActivated(): boolean {
@@ -34,11 +43,11 @@ export class HeaderComponent {
         await this.authService.logout();
     }
 
-    search(value: string): void {
-        this.searchService.setValue(value);
+    onMenuClicked(): void {
+        this.navigationService.toggleOpened();
     }
 
-    onSearchClicked(): void {
+    async onSearchClicked(): Promise<void> {
         if (this.isSearchActivated) {
             this.search(this.searchValue);
         } else {
@@ -48,6 +57,11 @@ export class HeaderComponent {
         this.isSearchActivated = !this.isSearchActivated;
         this.searchValue = "";
         this.isSearchTextFilled = false;
+    }
+
+    async search(value: string): Promise<void> {
+        await this.router.navigateByUrl("/videos");
+        this.searchService.setValue(value);
     }
 
     onInputChange(event: any): void {

@@ -1,3 +1,4 @@
+import { AboutComponent } from "./pages/about/about.component";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { AUTH_MODULE_CONFIG } from "./authorization";
@@ -6,16 +7,22 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HeaderComponent } from "./shared/header/header.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
+import { MainNavigationComponent } from "./shared/main-navigation/main-navigation.component";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatListModule } from "@angular/material/list";
+import { MatSidenavModule } from "@angular/material/sidenav";
 import { NgModule } from "@angular/core";
 import { OAuthModule } from "angular-oauth2-oidc";
+import { RouterModule } from "@angular/router";
+
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
+        AboutComponent,
+        MainNavigationComponent,
         HeaderComponent
     ],
     imports: [
@@ -27,6 +34,9 @@ import { OAuthModule } from "angular-oauth2-oidc";
         MatButtonModule,
         MatIconModule,
         MatInputModule,
+        MatSidenavModule,
+        MatListModule,
+        RouterModule
     ],
     bootstrap: [AppComponent]
 })

@@ -1,10 +1,17 @@
+<button mat-button
+        class="menu-button short-button"
+        (click)="onMenuClicked()"
+        *ngIf="isSmallScreen$ | async">
+    <mat-icon>menu</mat-icon>
+</button>
+
 <img src="./assets/images/logo.png"
      class="logo" />
 
 <div class="header-menu">
     <div class="search-field">
         <button mat-button
-                class="back-button"
+                class="back-button short-button"
                 (click)="onBackClicked()">
             <mat-icon>arrow_back</mat-icon>
         </button>
@@ -16,12 +23,12 @@
                (keyup.enter)="search(searchInput.value)" />
         <div class="search-buttons">
             <button mat-button
-                    class="clear-button"
+                    class="clear-button short-button"
                     (click)="onClearClicked()">
                 <mat-icon>close</mat-icon>
             </button>
             <button mat-button
-                    class="search-button"
+                    class="search-button short-button"
                     (click)="onSearchClicked()">
                 <mat-icon>search</mat-icon>
             </button>

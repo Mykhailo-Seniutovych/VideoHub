@@ -3,5 +3,14 @@
 </header>
 
 <main>
-    <router-outlet></router-outlet>
+    <mat-sidenav-container>
+        <mat-sidenav [mode]="navMode$ | async"
+                     [opened]="isNavOpened$ | async"
+                     (openedChange)="onNavOpenedChanged($event)">
+            <app-main-navigation></app-main-navigation>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </main>

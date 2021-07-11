@@ -62,3 +62,8 @@ html {
 *:after {
     box-sizing: inherit;
 }
+
+button.short-button {
+    padding: 0;
+    min-width: 32px;
+}
