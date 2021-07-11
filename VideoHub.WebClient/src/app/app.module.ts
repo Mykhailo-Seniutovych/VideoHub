@@ -5,7 +5,6 @@ import { AUTH_MODULE_CONFIG } from "./authorization";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { HeaderComponent } from "./shared/header/header.component";
-import { HomeComponent } from "./pages/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
 import { MainNavigationComponent } from "./shared/main-navigation/main-navigation.component";
 import { MatButtonModule } from "@angular/material/button";
