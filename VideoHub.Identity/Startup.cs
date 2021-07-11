@@ -40,6 +40,7 @@ namespace VideoHub.Identity
             app.UseIdentityServer();
 
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
