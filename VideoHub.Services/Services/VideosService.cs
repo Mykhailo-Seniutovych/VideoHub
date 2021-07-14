@@ -25,9 +25,9 @@ namespace VideoHub.Services.Services
             return videoDto;
         }
 
-        public async Task<List<VideoDto>> GetVideos()
+        public async Task<List<VideoDto>> GetVideos(string searchedTitle)
         {
-            var videos = await _videosRepository.GetVideos();
+            var videos = await _videosRepository.GetVideos(searchedTitle);
             var videoDtos = _mapper.Map<List<VideoDto>>(videos);
             return videoDtos;
         }

@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { URLS } from "./../../../utils/urls";
 import { Video } from "../models";
 
@@ -10,10 +11,9 @@ import { Video } from "../models";
 export class VideosService {
     private readonly apiBaseUrl = `${URLS.API}/api/videos`;
 
-
-
     constructor(private readonly httpClient: HttpClient) {
     }
 
-    videos$ = this.httpClient.get<Video[]>(this.apiBaseUrl);
+    videos$ = (searchedTitle: string): Observable<Video[]> =>
+        this.httpClient.get<Video[]>(`${this.apiBaseUrl}?searchedTitle=${searchedTitle}`)
 }

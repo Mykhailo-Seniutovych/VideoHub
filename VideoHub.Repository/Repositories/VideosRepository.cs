@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VideoHub.Repository.Interfaces;
 using VideoHub.Repository.Models;
@@ -23,10 +24,13 @@ namespace VideoHub.Repository.Repositories
             return video;
         }
 
-        public async Task<List<Video>> GetVideos()
+        public async Task<List<Video>> GetVideos(string searchedTitle)
         {
             using var dbContext = CreateDbContext();
             var videos = await dbContext.Videos
+                .Where(v =>
+                    string.IsNullOrEmpty(searchedTitle)
+                    || v.Title.ToLower().Contains(searchedTitle.ToLower()))
                 .AsNoTracking()
                 .Include(v => v.Channel)
                 .ToListAsync();

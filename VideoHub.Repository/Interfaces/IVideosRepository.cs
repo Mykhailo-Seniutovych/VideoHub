@@ -6,7 +6,7 @@ namespace VideoHub.Repository.Interfaces
 {
     public interface IVideosRepository
     {
-        Task<List<Video>> GetVideos();
+        Task<List<Video>> GetVideos(string searchedTitle);
         Task<Video> GetVideo(int videoId);
     }
 }

@@ -17,9 +17,9 @@ namespace VideoHub.Api.Controllers
         }
 
         [HttpGet("")]
-        public async Task<List<VideoDto>> GetVideos()
+        public async Task<List<VideoDto>> GetVideos(string searchedTitle)
         {
-            return await _videosService.GetVideos();
+            return await _videosService.GetVideos(searchedTitle);
         }
 
         [HttpGet("{videoId}")]
