@@ -1,8 +1,9 @@
 export const URLS = {
-    WEB_CLIENT: "http://localhost:5000",
+    WEB_CLIENT: "https://ashy-pebble-0f510ec10.azurestaticapps.net",
     API: "https://videohubapi.azurewebsites.net",
     IDENTITY: "https://videohubidentity.azurewebsites.net"
 
+    //WEB_CLIENT: "http://localhost:5000",
     //API: "https://localhost:5001",
     //IDENTITY: "https://localhost:5002",
 
