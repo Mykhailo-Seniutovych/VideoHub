@@ -7,7 +7,13 @@ namespace VideoHub.Identity
     public static class Config
     {
         // TODO: Move to config
-        public static string[] WebClientUrls = new[] { "http://192.168.0.112:5000", "http://localhost:5000" };
+        public static string[] WebClientUrls => new[]
+        {
+            "http://192.168.0.112:5000",
+            "http://localhost:5000",
+            "https://videohubapi.azurewebsites.net",
+            "https://ashy-pebble-0f510ec10.azurestaticapps.net"
+        };
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
         {

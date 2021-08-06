@@ -17,8 +17,14 @@ namespace VideoHub.Api
     public class Startup
     {
         //TODO: Move to config
-        private const string InternalIdentityUrl = "https://videohub.identity:443";
-        private string[] _allowedOrigins = new[] { "http://192.168.0.112:5000", "http://localhost:5000" };
+        //private const string IdentityUrl = "https://videohub.identity:443";
+        private const string IdentityUrl = "https://videohubidentity.azurewebsites.net/";
+        private string[] _allowedOrigins = new[]
+        {
+            "http://192.168.0.112:5000",
+            "http://localhost:5000",
+            "https://ashy-pebble-0f510ec10.azurestaticapps.net"
+        };
 
         private readonly IWebHostEnvironment _environment;
         public Startup(IWebHostEnvironment environment)
@@ -38,6 +44,7 @@ namespace VideoHub.Api
             services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
             services.AddSingleton<IVideosRepository, VideosRepository>();
             services.AddSingleton<IVideosService, VideosService>();
+            services.AddSingleton<IVideosRepository, VideosRepositoryMock>();
 
             services.AddDatabase();
             services.AddAutoMapper(Assembly.Load("VideoHub.Services"));
@@ -48,11 +55,12 @@ namespace VideoHub.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors(options => options
-                    .WithOrigins(_allowedOrigins)
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
             }
+            app.UseCors(options => options
+                .WithOrigins(_allowedOrigins)
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
 
             app.UseRouting();
 
@@ -69,7 +77,7 @@ namespace VideoHub.Api
 
         private void ConfigureJwtOptions(JwtBearerOptions options)
         {
-            options.Authority = InternalIdentityUrl;
+            options.Authority = IdentityUrl;
             options.Audience = "api";
 
             // ignore SSL validation of identity server in development

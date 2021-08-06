@@ -4,6 +4,7 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>Docker</ActiveDebugProfile>
+    <ActiveDebugProfile>VideoHub.Identity</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>VideoHubIdentity - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
