@@ -1,5 +1,5 @@
 export const URLS = {
-    WEB_CLIENT: "https://ashy-pebble-0f510ec10.azurestaticapps.net",
+    WEB_CLIENT: "https://kind-plant-041e9fc03.azurestaticapps.net",
     API: "https://videohubapi.azurewebsites.net",
     IDENTITY: "https://videohubidentity.azurewebsites.net"
 

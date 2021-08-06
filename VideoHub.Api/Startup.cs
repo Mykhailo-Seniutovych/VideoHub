@@ -23,7 +23,7 @@ namespace VideoHub.Api
         {
             "http://192.168.0.112:5000",
             "http://localhost:5000",
-            "https://ashy-pebble-0f510ec10.azurestaticapps.net"
+            "https://kind-plant-041e9fc03.azurestaticapps.net"
         };
 
         private readonly IWebHostEnvironment _environment;

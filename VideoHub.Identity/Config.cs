@@ -12,7 +12,7 @@ namespace VideoHub.Identity
             "http://192.168.0.112:5000",
             "http://localhost:5000",
             "https://videohubapi.azurewebsites.net",
-            "https://ashy-pebble-0f510ec10.azurestaticapps.net"
+            "https://kind-plant-041e9fc03.azurestaticapps.net"
         };
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
