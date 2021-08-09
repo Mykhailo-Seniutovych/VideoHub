@@ -4,5 +4,4 @@ COPY ["package.json", "package-lock.json", "./"]
 RUN npm install
 COPY . .
 EXPOSE 5000
-# TODO: do not use npm run start in production
-CMD npm run start
+CMD npm run start:lan

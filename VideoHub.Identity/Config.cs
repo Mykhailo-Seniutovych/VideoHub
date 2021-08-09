@@ -6,15 +6,6 @@ namespace VideoHub.Identity
 {
     public static class Config
     {
-        // TODO: Move to config
-        public static string[] WebClientUrls => new[]
-        {
-            "http://192.168.0.112:5000",
-            "http://localhost:5000",
-            "https://videohubapi.azurewebsites.net",
-            "https://kind-plant-041e9fc03.azurestaticapps.net"
-        };
-
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
         {
             new IdentityResources.OpenId(),
@@ -36,9 +27,8 @@ namespace VideoHub.Identity
                 }
             };
 
-        public static IEnumerable<Client> Clients => new Client[]
+        public static IEnumerable<Client> GetClients(string[] clientUrls) => new Client[]
         {
-
             new Client
             {
                 ClientId = "web_client",
@@ -53,9 +43,9 @@ namespace VideoHub.Identity
                     IdentityServerConstants.StandardScopes.Profile,
                     "api"
                 },
-                RedirectUris = WebClientUrls,
-                PostLogoutRedirectUris = WebClientUrls,
-                AllowedCorsOrigins = WebClientUrls,
+                RedirectUris = clientUrls,
+                PostLogoutRedirectUris = clientUrls,
+                AllowedCorsOrigins = clientUrls,
             }
         };
     }

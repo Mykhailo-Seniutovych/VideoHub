@@ -1,9 +1,9 @@
 import { AuthConfig } from "angular-oauth2-oidc";
-import { URLS } from "../utils";
+import { environment } from "src/environments/environment";
 
 export const AUTH_CONFIG: AuthConfig = {
-    issuer: URLS.IDENTITY,
-    redirectUri: URLS.WEB_CLIENT,
+    issuer: environment.identityUrl,
+    redirectUri: environment.webClientUrl,
     clientId: "web_client",
     responseType: "code",
     scope: "openid profile api",

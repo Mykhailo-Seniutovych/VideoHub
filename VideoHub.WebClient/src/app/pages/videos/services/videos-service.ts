@@ -1,7 +1,7 @@
+import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { URLS } from "./../../../utils/urls";
 import { Video } from "../models";
 
 
@@ -9,7 +9,7 @@ import { Video } from "../models";
     providedIn: "root"
 })
 export class VideosService {
-    private readonly apiBaseUrl = `${URLS.API}/api/videos`;
+    private readonly apiBaseUrl = `${environment.apiUrl}/api/videos`;
 
     constructor(private readonly httpClient: HttpClient) {
     }

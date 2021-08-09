@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net.Http;
@@ -11,25 +12,21 @@ using VideoHub.Repository.Interfaces;
 using VideoHub.Repository.Repositories;
 using VideoHub.Services.Interfaces;
 using VideoHub.Services.Services;
+using VideoHub.Services.Settings;
 
 namespace VideoHub.Api
 {
     public class Startup
     {
-        //TODO: Move to config
-        //private const string IdentityUrl = "https://videohub.identity:443";
-        private const string IdentityUrl = "https://videohubidentity.azurewebsites.net/";
-        private string[] _allowedOrigins = new[]
-        {
-            "http://192.168.0.112:5000",
-            "http://localhost:5000",
-            "https://kind-plant-041e9fc03.azurestaticapps.net"
-        };
-
+        private readonly IConfiguration _config;
         private readonly IWebHostEnvironment _environment;
-        public Startup(IWebHostEnvironment environment)
+        private readonly AppSettings _settings;
+
+        public Startup(IWebHostEnvironment environment, IConfiguration config)
         {
             _environment = environment;
+            _config = config;
+            _settings = _config.Get<AppSettings>();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -44,7 +41,7 @@ namespace VideoHub.Api
             services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
             services.AddSingleton<IVideosRepository, VideosRepository>();
             services.AddSingleton<IVideosService, VideosService>();
-            services.AddSingleton<IVideosRepository, VideosRepositoryMock>();
+            services.Configure<AppSettings>(_config);
 
             services.AddDatabase();
             services.AddAutoMapper(Assembly.Load("VideoHub.Services"));
@@ -57,10 +54,9 @@ namespace VideoHub.Api
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors(options => options
-                .WithOrigins(_allowedOrigins)
+                .WithOrigins(_settings.AllowedOrigins)
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-
 
             app.UseRouting();
 
@@ -77,7 +73,7 @@ namespace VideoHub.Api
 
         private void ConfigureJwtOptions(JwtBearerOptions options)
         {
-            options.Authority = IdentityUrl;
+            options.Authority = _settings.IdentityUrl;
             options.Audience = "api";
 
             // ignore SSL validation of identity server in development
