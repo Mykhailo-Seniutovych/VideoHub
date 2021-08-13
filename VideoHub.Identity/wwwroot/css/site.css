@@ -1,0 +1,68 @@
+﻿html, body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 10%;
+    width: 250px;
+}
+
+.login-form-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+    .login-form-header .logo {
+        width: 85%;
+        margin-bottom: 35px;
+    } 
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        background-color: #f2f2f2;
+        border-radius: 3px;
+        box-shadow: #989898 0 0 4px;
+        font-size: 20px;
+    }
+
+    .login-form .form-element {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+    }
+
+.form-element input {
+    height: 25px;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: grey 0 0 2px;
+    margin-top: 6px;
+}
+
+.login-form .submit-btn {
+    background-color: #4caf50;
+    border: 0;
+    color: #fff;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-form .submit-btn:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}

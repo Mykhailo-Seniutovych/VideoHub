@@ -2,18 +2,25 @@
 @using VideoHub.Identity.Models;
 @model LoginModel;
 
-<form asp-route="Login" method="post">
-    <input type="hidden" asp-for="ReturnUrl" />
+<section class="login-section">
+    <div class="login-form-header">
+        <img src="~/images/logo.png" class="logo"/>
+        <span>Sign in to VideoHub</span>
+    </div>
 
-    <div>
-        <label asp-for="Username">Username</label>
-        <input asp-for="Username" name="Username" />
-    </div>
-    <div>
-        <label>Password</label>
-        <input asp-for="Password" />
-    </div>
-    <div>
-        <button type="submit">Sign In</button>
-    </div>
-</form> 
+    <form class="login-form" asp-route="Login" method="post">
+        <input type="hidden" asp-for="ReturnUrl" />
+
+        <div class="form-element">
+            <label asp-for="Username">Username</label>
+            <input type="text" asp-for="Username" name="Username" />
+        </div>
+        <div class="form-element">
+            <label>Password</label>
+            <input type="password" asp-for="Password" />
+        </div>
+        <div class="form-element">
+            <button type="submit" class="submit-btn">Sign In</button>
+        </div>
+    </form>
+</section>

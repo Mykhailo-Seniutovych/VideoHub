@@ -45,6 +45,8 @@ namespace VideoHub.Identity
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseIdentityServer();
