@@ -1,0 +1,66 @@
+<section class="video-container"
+         [class.custom-fullscreen]="screenMode==='custom-fullscreen'"
+         [class.player-activated]="isPlayerActivated"
+         #videoContainer>
+    <video src="https://192.168.0.112:5001/videos/leaf.mp4"
+           [muted]="isMuted"
+           class="video"
+           (timeupdate)="onVideoTimeUpdated()"
+           (durationchange)="onDurationChanged()"
+           (pause)="onPaused()"
+           (play)="onPlayed()"
+           (click)="togglePlayer()"
+           autoplay
+           playsinline
+           #video></video>
+
+    <div class="player">
+        <mat-slider [color]="color"
+                    [value]="videoProgress"
+                    min="1"
+                    max="100"
+                    step="0.1"
+                    class="progress-bar"
+                    (input)="onProgressChanged($event)"></mat-slider>
+        <div class="control-btns">
+            <button mat-button
+                    class="toggle-play-btn middle-button"
+                    (click)="togglePlay()">
+                <mat-icon class="material-icons"
+                          *ngIf="!isPlaying"
+                          hidden>play_arrow</mat-icon>
+                <mat-icon class="material-icons"
+                          *ngIf="isPlaying">pause</mat-icon>
+            </button>
+            <button mat-button
+                    (click)="rewind()"
+                    class="rewind-btn middle-button">
+                <mat-icon class="material-icons">fast_rewind</mat-icon>
+            </button>
+            <button mat-button
+                    (click)="fastForward()"
+                    class="fast-forward-btn middle-button">
+                <mat-icon class="material-icons">fast_forward</mat-icon>
+            </button>
+            <button mat-button
+                    (click)="toggleMuted()"
+                    class="volume-btn middle-button">
+                <mat-icon class="material-icons"
+                          *ngIf="!isMuted">volume_up</mat-icon>
+                <mat-icon class="material-icons"
+                          *ngIf="isMuted">volume_off</mat-icon>
+            </button>
+            <div>
+                <span>{{currentTime}} / {{videoDuration}}</span>
+            </div>
+            <button mat-button
+                    (click)="toggleFullScreen()"
+                    class="screen-btn middle-button">
+                <mat-icon class="material-icons"
+                          *ngIf="screenMode !== 'custom-fullscreen'">fullscreen</mat-icon>
+                <mat-icon class="material-icons"
+                          *ngIf="screenMode === 'custom-fullscreen'">fullscreen_exit</mat-icon>
+            </button>
+        </div>
+    </div>
+</section>

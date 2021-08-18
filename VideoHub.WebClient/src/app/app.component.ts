@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
         await this.authService.authenticate();
-        await this.router.navigateByUrl(PAGE_ROUTES.videos);
+        if (window.location.pathname === "/") {
+            await this.router.navigateByUrl(PAGE_ROUTES.videos);
+        }
     }
 
     onNavOpenedChanged(value: boolean): void {

@@ -1,3 +1,4 @@
 export const PAGE_ROUTES = {
-    videos: "/videos"
+    videos: "/videos",
+    video: (videoId: number) => `/videos/${videoId}`,
 };

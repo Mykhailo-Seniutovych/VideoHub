@@ -2,6 +2,7 @@ import { AuthService } from "src/app/authorization";
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, ViewChild } from "@angular/core";
 import { MainNavigationService } from "./../services/main-navigation.service";
 import { map } from "rxjs/operators";
+import { PAGE_ROUTES } from "src/app/utils";
 import { Router } from "@angular/router";
 import { ScreenService } from "../services/screen.service";
 import { SearchService } from "./../services/search.service";
@@ -60,7 +61,7 @@ export class HeaderComponent {
     }
 
     async search(value: string): Promise<void> {
-        await this.router.navigateByUrl("/videos");
+        await this.router.navigateByUrl(PAGE_ROUTES.videos);
         this.searchService.setValue(value);
     }
 

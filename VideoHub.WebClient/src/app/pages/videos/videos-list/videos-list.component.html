@@ -1,5 +1,6 @@
 <mat-card class="video-container"
-          *ngFor="let video of videos$ | async">
+          *ngFor="let video of videos$ | async"
+          (click)="onVideoClicked(video.videoId)">
     <img mat-card-image
          [src]="video.imagePreviewUrl"
          alt="Photo Unavailable">

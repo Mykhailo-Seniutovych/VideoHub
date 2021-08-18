@@ -1,0 +1,129 @@
+@import "src/styles/media";
+@import "src/styles/variables";
+
+$progress-bar-height: 4px;
+$control-buttons-height: 36px;
+
+:host {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.video-container {
+    position: relative;
+    bottom: 0;
+    padding-bottom: $control-buttons-height;
+
+    display: flex;
+    flex-direction: column;
+    .video {
+        width: 100%;
+    }
+
+    .player {
+        position: absolute;
+        bottom: 0;
+        height: 48px;
+        transition: height 300ms ease;
+        width: 100%;
+
+        box-sizing: border-box;
+
+        .progress-bar {
+            height: $progress-bar-height;
+            width: 100%;
+            margin-bottom: auto;
+            padding: 0;
+            cursor: pointer;
+            display: block;
+
+            ::ng-deep {
+                .mat-slider-horizontal {
+                    height: 14px;
+                }
+
+                .mat-slider-wrapper {
+                    right: 0;
+                    left: 0;
+                    top: 0;
+                    height: auto;
+
+                    .mat-slider-track-wrapper {
+                        height: $progress-bar-height;
+
+                        .mat-slider-track-background {
+                            height: $progress-bar-height;
+                            background-color: $primary-color-light;
+                            transform: none !important;
+                        }
+                        .mat-slider-track-fill {
+                            height: $progress-bar-height;
+                        }
+                    }
+
+                    .mat-slider-thumb-container {
+                        opacity: 0;
+
+                        .mat-slider-thumb {
+                            background-color: $primary-color;
+                            border-color: $primary-color;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+
+        .progress-bar:active {
+            ::ng-deep {
+                .mat-slider-wrapper {
+                    .mat-slider-thumb-container {
+                        transition-delay: 150ms;
+                        transition-property: opacity;
+                        display: block;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    .control-btns {
+        margin: 4px 0;
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+
+    .screen-btn {
+        margin-left: auto;
+    }
+}
+
+.video-container:not(.custom-fullscreen) {
+    .player {
+        transform: translateY(-$control-buttons-height);
+    }
+}
+.video-container:not(.player-activated) {
+    .player {
+        height: $progress-bar-height;
+        transition: height 300ms ease;
+
+        .progress-bar {
+            cursor: default;
+        }
+    }
+}
+
+@include desktop {
+    :host {
+        width: 70%;
+    }
+}
+
+.videos {
+    width: 100%;
+    max-width: 800px;
+}
