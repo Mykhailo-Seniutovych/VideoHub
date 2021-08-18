@@ -2,7 +2,7 @@
          [class.custom-fullscreen]="screenMode==='custom-fullscreen'"
          [class.player-activated]="isPlayerActivated"
          #videoContainer>
-    <video src="https://192.168.0.112:5001/videos/leaf.mp4"
+    <video [src]="videoUrl"
            [muted]="isMuted"
            class="video"
            (timeupdate)="onVideoTimeUpdated()"

@@ -17,6 +17,17 @@ namespace VideoHub.Services.Mapping
                 .ForMember(
                     dest => dest.ImagePreviewUrl,
                     opt => opt.MapFrom<ImagePreviewUrlResolver>());
+
+            CreateMap<Video, VideoDetailsDto>()
+                .ForMember(
+                    dest => dest.ChannelImageUrl,
+                    opt => opt.MapFrom<ChannelImageUrlResolver>())
+                .ForMember(
+                    dest => dest.ImagePreviewUrl,
+                    opt => opt.MapFrom<ImagePreviewUrlResolver>())
+                .ForMember(
+                    dest => dest.VideoUrl,
+                    opt => opt.MapFrom<VideoUrlResolver>());
         }
 
         private class ChannelImageUrlResolver : IValueResolver<Video, VideoDto, string>
@@ -46,6 +57,21 @@ namespace VideoHub.Services.Mapping
             public string Resolve(Video source, VideoDto destination, string destMember, ResolutionContext context)
             {
                 return _appsettings.ApiUrl + source.ImagePreviewPath;
+            }
+        }
+
+        private class VideoUrlResolver : IValueResolver<Video, VideoDto, string>
+        {
+            private readonly AppSettings _appsettings;
+
+            public VideoUrlResolver(IOptions<AppSettings> appsettingsOptions)
+            {
+                _appsettings = appsettingsOptions.Value;
+            }
+
+            public string Resolve(Video source, VideoDto destination, string destMember, ResolutionContext context)
+            {
+                return _appsettings.ApiUrl + source.VideoPath;
             }
         }
     }

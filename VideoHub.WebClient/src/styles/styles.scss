@@ -4,7 +4,7 @@ $typografy: mat-typography-config(
     $subheading-2: mat-typography-level(18px, 28px, 400),
     $subheading-1: mat-typography-level(17px, 24px, 400),
     $body-2: mat-typography-level(16px, 24px, 500),
-    $body-1: mat-typography-level(16px, 20px, 400),
+    $body-1: mat-typography-level(16px, 24px, 400),
     $caption: mat-typography-level(14px, 20px, 400),
     $button: mat-typography-level(16px, 14px, 500),
 );
@@ -71,4 +71,11 @@ button.short-button {
 button.middle-button {
     padding: 0;
     min-width: 48px;
+}
+
+.error-snackbar {
+    background-color: $error-snackbar-color;
+    .mat-simple-snackbar-action {
+        color: #fff;
+    }
 }

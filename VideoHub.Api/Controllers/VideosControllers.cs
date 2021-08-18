@@ -26,7 +26,6 @@ namespace VideoHub.Api.Controllers
         public async Task<VideoDto> GetVideo(int videoId)
         {
             return await _videosService.GetVideo(videoId);
-
         }
     }
 }

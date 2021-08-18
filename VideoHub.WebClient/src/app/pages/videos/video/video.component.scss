@@ -2,18 +2,14 @@
 @import "src/styles/variables";
 
 $progress-bar-height: 4px;
-$control-buttons-height: 36px;
 
 :host {
     display: flex;
-    width: 100%;
-    max-width: 1000px;
 }
 
 .video-container {
     position: relative;
     bottom: 0;
-    padding-bottom: $control-buttons-height;
 
     display: flex;
     flex-direction: column;
@@ -101,11 +97,6 @@ $control-buttons-height: 36px;
     }
 }
 
-.video-container:not(.custom-fullscreen) {
-    .player {
-        transform: translateY(-$control-buttons-height);
-    }
-}
 .video-container:not(.player-activated) {
     .player {
         height: $progress-bar-height;
@@ -114,16 +105,9 @@ $control-buttons-height: 36px;
         .progress-bar {
             cursor: default;
         }
-    }
-}
 
-@include desktop {
-    :host {
-        width: 70%;
+        .control-btns {
+            display: none;
+        }
     }
-}
-
-.videos {
-    width: 100%;
-    max-width: 800px;
 }

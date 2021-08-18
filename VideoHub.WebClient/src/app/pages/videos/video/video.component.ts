@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from "@angular/core";
+import { Component, ElementRef, HostListener, Input, ViewChild } from "@angular/core";
 import { MatSliderChange } from "@angular/material/slider";
 import { ThemePalette } from "@angular/material/core";
 
@@ -13,6 +13,8 @@ export class VideoComponent {
     @ViewChild("video") videoRef: ElementRef<HTMLVideoElement>;
     @ViewChild("videoContainer") videoContainerRef: ElementRef<HTMLDivElement>;
     @ViewChild("progress", { read: ElementRef }) progressRef: ElementRef<HTMLElement>;
+
+    @Input() videoUrl: string;
 
     private get videoEl(): HTMLVideoElement {
         return this.videoRef.nativeElement;

@@ -1,0 +1,46 @@
+@import "src/styles/media";
+
+.video-details {
+    width: 100%;
+    max-width: 1000px;
+}
+
+app-video {
+    margin-bottom: 16px;
+}
+
+.video-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-info {
+    display: flex;
+    align-items: center;
+
+    box-shadow: 0 -2px 2px -2px grey;
+    padding: 16px 0;
+
+    .channel-img {
+        border-radius: 50%;
+        width: 45px;
+        margin-right: 15px;
+    }
+
+    .channel-name {
+        font-weight: 500;
+    }
+}
+
+.video-description {
+    width: 100%;
+    align-self: flex-end;
+    box-shadow: 0 2px 2px -2px grey;
+    padding: 0 0 16px 0;
+}
+
+@include desktop {
+    .video-details {
+        width: 70%;
+    }
+}

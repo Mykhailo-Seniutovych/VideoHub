@@ -1,0 +1,15 @@
+<div class="video-details"
+     *ngIf="video$ | async as video">
+    <app-video [videoUrl]="video.videoUrl"></app-video>
+    <section class="video-info">
+        <h2>{{video.title}}</h2>
+        <div class="channel-info">
+            <img [src]="video.channelImageUrl"
+                 class="channel-img" />
+            <span class="channel-name">{{video.channelName}}</span>
+        </div>
+        <div class="video-description">
+            <span>{{video.description}}</span>
+        </div>
+    </section>
+</div>

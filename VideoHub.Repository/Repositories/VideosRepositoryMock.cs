@@ -27,7 +27,6 @@ namespace VideoHub.Repository.Repositories
                 {
                     VideoId = 1,
                     Channel = new Channel { ChannelId = 13 },
-                    Description = "Boris Johnson gets Covid shot",
                     Title = "Boris Johnson",
                     ImagePreviewPath = "/path/johnson.jpg",
                 },
@@ -35,7 +34,6 @@ namespace VideoHub.Repository.Repositories
                 {
                     VideoId = 2,
                     Channel = new Channel { ChannelId = 19 },
-                    Description = "Donals Trump shakes Boris Johnson's hand",
                     Title = "Donals J. Trump",
                     ImagePreviewPath = "/path/trump.jpg",
                 }

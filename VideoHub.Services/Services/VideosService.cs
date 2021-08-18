@@ -18,10 +18,10 @@ namespace VideoHub.Services.Services
             _mapper = mapper;
         }
 
-        public async Task<VideoDto> GetVideo(int videoId)
+        public async Task<VideoDetailsDto> GetVideo(int videoId)
         {
             var video = await _videosRepository.GetVideo(videoId);
-            var videoDto = _mapper.Map<VideoDto>(video);
+            var videoDto = _mapper.Map<VideoDetailsDto>(video);
             return videoDto;
         }
 
