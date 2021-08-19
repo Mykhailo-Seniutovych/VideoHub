@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { MainNavigationService } from "./../services/main-navigation.service";
+import { MainNavigationService } from "../../services/main-navigation.service";
 
 @Component({
     selector: "app-main-navigation",

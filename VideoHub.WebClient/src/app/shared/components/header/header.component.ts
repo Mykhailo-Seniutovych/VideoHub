@@ -1,11 +1,13 @@
 import { AuthService } from "src/app/authorization";
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, ViewChild } from "@angular/core";
-import { MainNavigationService } from "./../services/main-navigation.service";
+import { MainNavigationService } from "./../../services/main-navigation.service";
 import { map } from "rxjs/operators";
+import { MatDialog } from "@angular/material/dialog";
 import { PAGE_ROUTES } from "src/app/utils";
 import { Router } from "@angular/router";
-import { ScreenService } from "../services/screen.service";
-import { SearchService } from "./../services/search.service";
+import { ScreenService } from "./../../services/screen.service";
+import { SearchService } from "./../../services/search.service";
+import { UploadVideoComponent } from "../upload-video/upload-video.component";
 
 @Component({
     selector: "app-header",
@@ -29,7 +31,8 @@ export class HeaderComponent {
         private readonly searchService: SearchService,
         private readonly navigationService: MainNavigationService,
         private readonly screenService: ScreenService,
-        private readonly router: Router) {
+        private readonly router: Router,
+        public readonly dialog: MatDialog) {
     }
 
     @HostBinding("class.search-activated") get searchActivated(): boolean {
@@ -78,5 +81,12 @@ export class HeaderComponent {
     onBackClicked(): void {
         this.isSearchActivated = false;
         this.isSearchTextFilled = false;
+    }
+
+    openMenu(): void {
+        console.log("open menu");
+        const dialogRef = this.dialog.open(UploadVideoComponent, {
+            width: "250px",
+        });
     }
 }
