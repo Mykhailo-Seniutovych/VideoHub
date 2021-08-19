@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.IO.Abstractions;
 using VideoHub.Repository.Configuration;
 using VideoHub.Repository.Interfaces;
 using VideoHub.Repository.Repositories;
+using VideoHub.Services.Interfaces;
+using VideoHub.Services.Services;
 
 namespace VideoHub.Api
 {
@@ -11,6 +14,8 @@ namespace VideoHub.Api
         {
             services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
             services.AddSingleton<IVideosRepository, VideosRepository>();
+            services.AddSingleton<IVideosService, VideosService>();
+            services.AddSingleton<IFileSystem, FileSystem>();
         }
     }
 }

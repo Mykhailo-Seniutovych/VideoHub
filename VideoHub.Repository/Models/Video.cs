@@ -7,6 +7,8 @@
         public string Description { get; set; }
         public string ImagePreviewPath { get; set; }
         public string VideoPath { get; set; }
+        public int ChannelId { get; set; }
+
         public Channel Channel { get; set; }
     }
 }

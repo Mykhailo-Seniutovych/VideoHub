@@ -36,5 +36,13 @@ namespace VideoHub.Repository.Repositories
                 .ToListAsync();
             return videos;
         }
+
+        public async Task<int> AddVideo(Video video)
+        {
+            using var dbContext = CreateDbContext();
+            await dbContext.Videos.AddAsync(video);
+            await dbContext.SaveChangesAsync();
+            return video.VideoId;
+        }
     }
 }

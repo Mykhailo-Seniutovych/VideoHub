@@ -7,11 +7,6 @@ using Microsoft.Extensions.Hosting;
 using System.Net.Http;
 using System.Reflection;
 using VideoHub.Api.Extensions;
-using VideoHub.Repository.Configuration;
-using VideoHub.Repository.Interfaces;
-using VideoHub.Repository.Repositories;
-using VideoHub.Services.Interfaces;
-using VideoHub.Services.Services;
 using VideoHub.Services.Settings;
 
 namespace VideoHub.Api
@@ -38,9 +33,7 @@ namespace VideoHub.Api
             services.AddAuthorization();
             services.AddControllers();
 
-            services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
-            services.AddSingleton<IVideosRepository, VideosRepository>();
-            services.AddSingleton<IVideosService, VideosService>();
+            services.ConfigureDependencyInjection();
             services.Configure<AppSettings>(_config);
 
             services.AddDatabase();

@@ -8,5 +8,6 @@ namespace VideoHub.Services.Interfaces
     {
         Task<List<VideoDto>> GetVideos(string searchedTitle);
         Task<VideoDetailsDto> GetVideo(int videoId);
+        Task<int> UploadVideo(UploadingVideoDto videoDto);
     }
 }

@@ -8,5 +8,6 @@ namespace VideoHub.Repository.Interfaces
     {
         Task<List<Video>> GetVideos(string searchedTitle);
         Task<Video> GetVideo(int videoId);
+        Task<int> AddVideo(Video video);
     }
 }

@@ -23,9 +23,16 @@ namespace VideoHub.Api.Controllers
         }
 
         [HttpGet("{videoId}")]
-        public async Task<VideoDto> GetVideo(int videoId)
+        public async Task<VideoDetailsDto> GetVideo(int videoId)
         {
             return await _videosService.GetVideo(videoId);
+        }
+
+        [HttpPost("")]
+        public async Task<int> UploadVideo([FromForm] UploadingVideoDto video)
+        {
+            var createdVideoId = await _videosService.UploadVideo(video);
+            return createdVideoId;
         }
     }
 }

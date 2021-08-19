@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using VideoHub.Repository.Models;
 using VideoHub.Services.DTO;
 using VideoHub.Services.Settings;
+using VideoHub.Services.Utils;
 
 namespace VideoHub.Services.Mapping
 {
@@ -28,6 +29,8 @@ namespace VideoHub.Services.Mapping
                 .ForMember(
                     dest => dest.VideoUrl,
                     opt => opt.MapFrom<VideoUrlResolver>());
+
+            CreateMap<UploadingVideoDto, Video>();
         }
 
         private class ChannelImageUrlResolver : IValueResolver<Video, VideoDto, string>
@@ -41,7 +44,7 @@ namespace VideoHub.Services.Mapping
 
             public string Resolve(Video source, VideoDto destination, string destMember, ResolutionContext context)
             {
-                return _appsettings.ApiUrl + source.Channel.ImagePath;
+                return UrlUtils.Combine(_appsettings.ApiUrl, source.Channel.ImagePath);
             }
         }
 
@@ -56,7 +59,7 @@ namespace VideoHub.Services.Mapping
 
             public string Resolve(Video source, VideoDto destination, string destMember, ResolutionContext context)
             {
-                return _appsettings.ApiUrl + source.ImagePreviewPath;
+                return UrlUtils.Combine(_appsettings.ApiUrl, source.ImagePreviewPath);
             }
         }
 
@@ -71,7 +74,7 @@ namespace VideoHub.Services.Mapping
 
             public string Resolve(Video source, VideoDto destination, string destMember, ResolutionContext context)
             {
-                return _appsettings.ApiUrl + source.VideoPath;
+                return UrlUtils.Combine(_appsettings.ApiUrl, source.VideoPath);
             }
         }
     }

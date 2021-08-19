@@ -4,26 +4,29 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AUTH_MODULE_CONFIG } from "./authorization";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
-import { HeaderComponent } from "./shared/header/header.component";
+import { HeaderComponent } from "./shared/components/header/header.component";
 import { HttpClientModule } from "@angular/common/http";
-import { MainNavigationComponent } from "./shared/main-navigation/main-navigation.component";
+import { MainNavigationComponent } from "./shared/components/main-navigation/main-navigation.component";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
+import { MatMenuModule } from "@angular/material/menu";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NgModule } from "@angular/core";
 import { OAuthModule } from "angular-oauth2-oidc";
 import { RouterModule } from "@angular/router";
-
+import { UploadVideoComponent } from "./shared/components/upload-video/upload-video.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         AboutComponent,
         MainNavigationComponent,
-        HeaderComponent
+        HeaderComponent,
+        UploadVideoComponent
     ],
     imports: [
         OAuthModule.forRoot(AUTH_MODULE_CONFIG),
@@ -37,7 +40,9 @@ import { RouterModule } from "@angular/router";
         MatSidenavModule,
         MatListModule,
         MatSnackBarModule,
-        RouterModule
+        RouterModule,
+        MatMenuModule,
+        MatDialogModule
     ],
     bootstrap: [AppComponent]
 })

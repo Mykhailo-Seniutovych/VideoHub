@@ -39,5 +39,10 @@ namespace VideoHub.Repository.Repositories
                 }
             };
         }
+
+        public Task<int> AddVideo(Video video)
+        {
+            return Task.FromResult(19);
+        }
     }
 }
