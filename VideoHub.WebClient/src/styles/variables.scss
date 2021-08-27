@@ -1,9 +1,13 @@
 @import '~@angular/material/theming';
 
 $primary-color: mat-color($mat-green, 500);
+$primary-color-disabled: mat-color($mat-green, 200);
 $primary-color-light: mat-color($mat-green, 100);
-$accent-color: mat-color($mat-yellow, 500);
+$accent-color: mat-color($mat-grey, 900);
+$warn-color: mat-color($mat-orange, 500);
+$error-color: mat-color($mat-red, 500);
 $error-snackbar-color: mat-color($mat-red, 300);
+$text-color-on-primary-background: #fff;
 
 $body-background-color: #ffffff;
 

@@ -29,6 +29,7 @@ namespace VideoHub.Api.Controllers
         }
 
         [HttpPost("")]
+        [RequestSizeLimit(100 * 1024 * 1024)]
         public async Task<int> UploadVideo([FromForm] UploadingVideoDto video)
         {
             var createdVideoId = await _videosService.UploadVideo(video);

@@ -1,7 +1,6 @@
 <button mat-button
-        class="menu-button short-button"
-        (click)="onMenuClicked()"
-        *ngIf="isSmallScreen$ | async">
+        class="menu-button middle-button"
+        (click)="onMenuClicked()">
     <mat-icon>menu</mat-icon>
 </button>
 
@@ -28,23 +27,27 @@
                 <mat-icon>close</mat-icon>
             </button>
             <button mat-button
-                    class="search-button short-button"
+                    class="search-button middle-button"
                     (click)="onSearchClicked()">
                 <mat-icon>search</mat-icon>
             </button>
         </div>
     </div>
     <div class="profile">
-        <button class="username"
+        <button class="user-menu middle-button"
                 [matMenuTriggerFor]="menu"
                 mat-button
-                *ngIf="(user$ | async) as user">{{user.fullName}}</button>
+                *ngIf="(user$ | async) as user">
+            <span *ngIf="isDektopScreen$ | async">{{user.fullName}}</span>
+            <mat-icon *ngIf="!(isDektopScreen$ | async)">more_vert</mat-icon>
+        </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="openMenu()">Upload Video</button>
+            <button mat-menu-item
+                    (click)="openMenu()">Upload Video</button>
         </mat-menu>
         <button mat-button
                 color="primary"
-                class="logout-btn"
+                class="logout-btn middle-button"
                 (click)="logout()">
             <mat-icon>logout</mat-icon>
         </button>

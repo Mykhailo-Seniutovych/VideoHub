@@ -1,0 +1,75 @@
+@import "src/styles/variables";
+
+:host {
+    height: 100%;
+
+    .top-container {
+        height: 100%;
+
+        mat-spinner {
+            position: absolute;
+            display: none;
+        }
+
+        .non-loading-content {
+            display: flex;
+            visibility: visible;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+    }
+
+    .top-container.upload-in-progress {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        mat-spinner {
+            display: block;
+        }
+
+        .non-loading-content {
+            visibility: hidden;
+        }
+    }
+}
+
+
+mat-dialog-content.mat-dialog-content {
+    flex-grow: 1;
+
+    .upload-form {
+        display: flex;
+        flex-direction: column;
+
+        mat-form-field {
+            margin-bottom: 10px;
+        }
+
+        .mat-hint.warning {
+            color: $warn-color;
+        }
+
+        .file-input-container {
+            padding-bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .attachment-name-input {
+            padding-right: 35px;
+        }
+
+        .attachment-btn {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+        }
+    }
+}
+
+.mat-dialog-actions {
+    margin-top: auto;
+    margin-bottom: 0;
+}

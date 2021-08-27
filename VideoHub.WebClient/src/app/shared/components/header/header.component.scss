@@ -15,10 +15,6 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     background-color: $body-background-color;
 
-    .menu-button {
-        margin-right: 10px;
-    }
-
     .logo {
         height: 100%;
         padding: 5px 0;
@@ -43,7 +39,7 @@
             height: 100%;
             flex-grow: 1;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            padding: 0 64px 0 32px;
+            padding: 0 80px 0 32px;
 
             &:focus {
                 outline-width: 0;
@@ -82,8 +78,12 @@
         display: flex;
         align-items: center;
 
-        .username {
-            display: none;
+        .user-menu {
+            height: 100%;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .logout-btn {
@@ -115,10 +115,15 @@
     display: block;
 }
 
+$desktop-search-field-height: 40px;
 @include desktop {
     :host {
+        .menu-button {
+            display: none;
+        }
+
         .search-field {
-            height: 40px;
+            height: $desktop-search-field-height;
 
             > input {
                 visibility: hidden;
@@ -130,11 +135,13 @@
                 right: 0;
             }
         }
-        .profile {
-            .username {
-                display: flex;
-                margin: 0 10px;
-            }
+        .search-field,
+        .profile .user-menu,
+        .profile .logout-btn {
+            margin-right: 16px;
+        }
+        .profile .user-menu {
+            padding: 0 10px;
         }
     }
 
@@ -142,7 +149,7 @@
         .search-field {
             position: relative;
             width: 500px;
-            height: 40px;
+            height: $desktop-search-field-height;
 
             > input {
                 visibility: visible;

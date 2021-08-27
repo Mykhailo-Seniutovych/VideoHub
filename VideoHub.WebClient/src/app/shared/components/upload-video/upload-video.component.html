@@ -1,1 +1,111 @@
-<p>upload-video works!</p>
+<div class="top-container"
+     [class.upload-in-progress]="isUploadInProgress">
+    <mat-spinner></mat-spinner>
+    <div class="non-loading-content">
+        <h2 mat-dialog-title>Upload New Video</h2>
+        <mat-dialog-content class="mat-typography">
+            <form [formGroup]="uploadForm"
+                  class="upload-form">
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input type="text"
+                           [maxlength]="maxTitleLength"
+                           formControlName="videoTitle"
+                           matInput
+                           required>
+                    <mat-hint class="warning"
+                              *ngIf="showTileLengthWarn">{{titleCharsLeft}} characters left</mat-hint>
+                    <mat-error *ngIf="videoTitleControl.hasError('maxlength')">
+                        Ttle is too long
+                    </mat-error>
+                    <mat-error *ngIf="videoTitleControl.hasError('required')">
+                        Tite is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea type="text"
+                              [maxlength]="maxDescLength"
+                              formControlName="videoDescription"
+                              matInput
+                              required></textarea>
+                    <mat-hint class="warning"
+                              *ngIf="showDescLengthWarn">{{descCharsLeft}} characters left</mat-hint>
+                    <mat-error *ngIf="videoDescriptionControl.hasError('maxlength')">
+                        Description is too long
+                    </mat-error>
+                    <mat-error *ngIf="videoDescriptionControl.hasError('required')">
+                        Description is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Video File</mat-label>
+                    <div class="file-input-container">
+                        <input type="file"
+                               accept=".mp4,.mov,.m4v"
+                               required
+                               hidden
+                               (change)="onVideoFileChange($event)"
+                               (click)="$event.stopPropagation()"
+                               #videoFile>
+                        <input type="text"
+                               [maxlength]="maxTitleLength"
+                               class="attachment-name-input"
+                               formControlName="videoFileName"
+                               matInput
+                               required
+                               readonly>
+                        <button mat-icon-button
+                                type="button"
+                                class="attachment-btn"
+                                (click)="onChooseVideoFile($event)">
+                            <mat-icon>attach_file</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="videoFileControl.hasError('required')">
+                        Video is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Video Preview Image</mat-label>
+                    <div class="file-input-container">
+                        <input type="file"
+                               accept="accept=.png,.jpg,.jpeg"
+                               required
+                               hidden
+                               (change)="onImagePreviewChange($event)"
+                               (click)="$event.stopPropagation()"
+                               #imagePreview>
+                        <input type="text"
+                               [maxlength]="maxTitleLength"
+                               class="attachment-name-input"
+                               formControlName="imagePreviewName"
+                               matInput
+                               required
+                               readonly>
+                        <button mat-icon-button
+                                type="button"
+                                class="attachment-btn"
+                                (click)="onChooseImagePreview($event)">
+                            <mat-icon>attach_file</mat-icon>
+                        </button>
+                    </div>
+                    <mat-hint>a preview image will be shown when searching for your video</mat-hint>
+                    <mat-error *ngIf="imagePreviewControl.hasError('required')">
+                        Image preview is required
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-dialog-content>
+
+        <mat-dialog-actions align="end">
+            <button mat-button
+                    mat-dialog-close>Cancel</button>
+            <button mat-raised-button
+                    color="primary"
+                    [disabled]="isUploadDisabled"
+                    [title]="isUploadDisabled ? '' : 'Form is not correctly filled'"
+                    (click)="onSubmitForm()">Upload</button>
+        </mat-dialog-actions>
+    </div>
+</div>

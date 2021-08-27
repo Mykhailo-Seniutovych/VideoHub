@@ -1,7 +1,6 @@
 import { AuthService } from "src/app/authorization";
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, ViewChild } from "@angular/core";
 import { MainNavigationService } from "./../../services/main-navigation.service";
-import { map } from "rxjs/operators";
 import { MatDialog } from "@angular/material/dialog";
 import { PAGE_ROUTES } from "src/app/utils";
 import { Router } from "@angular/router";
@@ -18,7 +17,7 @@ import { UploadVideoComponent } from "../upload-video/upload-video.component";
 export class HeaderComponent {
     @ViewChild("searchInput") searchInput: ElementRef;
 
-    isSmallScreen$ = this.screenService.isDesktop$.pipe(map(isDesktop => !isDesktop));
+    isDektopScreen$ = this.screenService.isDesktop$;
 
     user$ = this.authService.user$;
     searchValue = "";
@@ -84,9 +83,20 @@ export class HeaderComponent {
     }
 
     openMenu(): void {
-        console.log("open menu");
-        const dialogRef = this.dialog.open(UploadVideoComponent, {
-            width: "250px",
-        });
+        if (this.screenService.isDesktop) {
+            this.dialog.open(UploadVideoComponent, {
+                width: "600px",
+                maxHeight: "90vh",
+                disableClose: true,
+            });
+        } else {
+            this.dialog.open(UploadVideoComponent, {
+                maxWidth: "100vw",
+                maxHeight: "100vh",
+                height: "100%",
+                width: "100%",
+                disableClose: true,
+            });
+        }
     }
 }

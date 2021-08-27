@@ -11,7 +11,7 @@ $typografy: mat-typography-config(
 @include mat-core($typografy);
 
 $primary-palette: mat-palette($mat-green, 500, 100, 700);
-$accent-palette: mat-palette($mat-yellow, 500, 300, 600);
+$accent-palette: mat-palette($mat-grey, 800, 700, 900);
 $warn-palette: mat-palette($mat-red, 500, 100, 700);
 
 $theme: mat-light-theme(
@@ -73,9 +73,32 @@ button.middle-button {
     min-width: 48px;
 }
 
+button.mat-button-base.mat-raised-button.mat-primary,
+button.mat-button-base.mat-raised-button.mat-accent,
+button.mat-button-base.mat-flat-button.mat-primary,
+button.mat-button-base.mat-flat-button.mat-accent,
+button.mat-button-base.mat-fab.mat-primary,
+button.mat-button-base.mat-fab.mat-accent {
+    color: $text-color-on-primary-background;
+}
+
+button.mat-raised-button.mat-primary.mat-button-disabled,
+button.mat-flat-button.mat-primary.mat-button-disabled {
+    color: $text-color-on-primary-background;
+    background-color: $primary-color-disabled;
+}
+
 .error-snackbar {
     background-color: $error-snackbar-color;
     .mat-simple-snackbar-action {
-        color: #fff;
+        color: $text-color-on-primary-background;
     }
+}
+
+.mat-focused .mat-form-field-required-marker {
+    color: $error-color;
+}
+
+.mat-form-field-required-marker {
+    color: $error-color;
 }

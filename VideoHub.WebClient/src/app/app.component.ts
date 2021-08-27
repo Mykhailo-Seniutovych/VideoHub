@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     constructor(
         private readonly authService: AuthService,
         private readonly router: Router,
-        private readonly navigationService: MainNavigationService,) {
+        private readonly navigationService: MainNavigationService) {
     }
 
     async ngOnInit(): Promise<void> {
