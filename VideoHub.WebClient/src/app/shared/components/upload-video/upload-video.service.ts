@@ -21,6 +21,6 @@ export class UploadVideoService {
         formData.append("VideoFile", video.videoFile);
         formData.append("ImagePreview", video.imagePreview);
 
-        return this.http.post<number>("https://localhost:5001/api/videos", formData);
+        return this.http.post<number>(this.apiBaseUrl, formData);
     }
 }

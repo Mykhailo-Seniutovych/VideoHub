@@ -1,8 +1,9 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { catchError } from "rxjs/operators";
+import { BehaviorSubject, combineLatest, EMPTY } from "rxjs";
+import { catchError, map, shareReplay, startWith } from "rxjs/operators";
+import { Channel } from "../../models";
+import { ChannelsService } from "./../../services";
 import { Component, ElementRef, ViewChild } from "@angular/core";
-import { EMPTY } from "rxjs";
-import { HttpClient } from "@angular/common/http";
 import { MatDialogRef } from "@angular/material/dialog";
 import { PAGE_ROUTES } from "src/app/utils";
 import { Router } from "@angular/router";
@@ -23,7 +24,21 @@ export class UploadVideoComponent {
     maxTitleLength = 50;
     maxDescLength = 2000;
     uploadForm: FormGroup;
-    isUploadInProgress = false;
+    isUploadInProgressSub = new BehaviorSubject(false);
+
+    readonly channels$ = this.channelsService.channels$.pipe(
+        shareReplay(1),
+        catchError((error: any) => {
+        this.snackBarService.showError(error.message);
+        this.dialogRef.close();
+        return EMPTY;
+    }));
+
+    isLoadInProgress$ = combineLatest([this.isUploadInProgressSub, this.channels$])
+        .pipe(
+            map(([isUploadInProgress, _]) => isUploadInProgress),
+            startWith(true));
+
     private allControlsTouched = false;
 
     get isUploadDisabled(): boolean {
@@ -50,6 +65,14 @@ export class UploadVideoComponent {
         return this.maxDescLength - this.videoDescriptionControl.value.length;
     }
 
+    get channelControl(): AbstractControl {
+        return this.uploadForm.get("channel");
+    }
+
+    get channelControlValue(): Channel {
+        return this.uploadForm.get("channel").value as Channel;
+    }
+
     get videoFileControl(): AbstractControl {
         return this.uploadForm.get("videoFile");
     }
@@ -60,14 +83,15 @@ export class UploadVideoComponent {
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly dialogRef: MatDialogRef<UploadVideoComponent>,
-        private readonly http: HttpClient,
         private readonly uploadVideoService: UploadVideoService,
+        private readonly channelsService: ChannelsService,
         private readonly snackBarService: SnackBarService,
         private readonly router: Router,
     ) {
         this.uploadForm = this.formBuilder.group({
             videoTitle: ["", [Validators.required, Validators.maxLength(this.maxTitleLength)]],
             videoDescription: ["", [Validators.required, Validators.maxLength(this.maxDescLength)]],
+            channel: ["", [Validators.required]],
             videoFile: [null, [Validators.required]],
             videoFileName: [""],
             imagePreview: [null, [Validators.required]],
@@ -105,14 +129,14 @@ export class UploadVideoComponent {
 
     onSubmitForm(): void {
         if (this.uploadForm.valid) {
-            this.isUploadInProgress = true;
-            this.submitValidForm();
+           this.isUploadInProgressSub.next(true);
+           this.submitValidForm();
         } else {
-            Object.keys(this.uploadForm.controls).forEach(field => {
-                const control = this.uploadForm.get(field);
-                control.markAsTouched({ onlySelf: true });
-            });
-            this.allControlsTouched = true;
+           Object.keys(this.uploadForm.controls).forEach(field => {
+               const control = this.uploadForm.get(field);
+               control.markAsTouched({ onlySelf: true });
+           });
+           this.allControlsTouched = true;
         }
     }
 
@@ -122,10 +146,10 @@ export class UploadVideoComponent {
         video.description = this.uploadForm.get("videoDescription").value;
         video.videoFile = this.uploadForm.get("videoFile").value;
         video.imagePreview = this.uploadForm.get("imagePreview").value;
-        video.channelId = 4;
+        video.channelId = (this.uploadForm.get("channel").value as Channel).channelId;
         this.uploadVideoService.uploadVideo$(video).pipe(catchError((error: any) => {
             this.snackBarService.showError(error.message);
-            this.isUploadInProgress = false;
+            this.isUploadInProgressSub.next(false);
             return EMPTY;
         })).subscribe(async createdId => this.redirectToVideo(createdId));
     }
@@ -133,6 +157,6 @@ export class UploadVideoComponent {
     private async redirectToVideo(videoId: number): Promise<void> {
         this.dialogRef.close();
         await this.router.navigateByUrl(PAGE_ROUTES.video(videoId));
-        this.isUploadInProgress = false;
+        this.isUploadInProgressSub.next(false);
     }
 }

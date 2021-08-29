@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using System.Net.Http;
 using System.Reflection;
 using VideoHub.Api.Extensions;
@@ -26,6 +27,8 @@ namespace VideoHub.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
+
             services.AddCors();
             services
                 .AddAuthentication("Bearer")
@@ -70,7 +73,7 @@ namespace VideoHub.Api
             options.Audience = "api";
 
             // ignore SSL validation of identity server in development
-            if (_environment.IsDevelopment())
+            if (_environment.IsCustomDevelopment())
             {
                 options.BackchannelHttpHandler = new HttpClientHandler
                 {

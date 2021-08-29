@@ -59,7 +59,8 @@ namespace VideoHub.Services.Services
 
         private async Task<string> SaveVideoFile(IFormFile video)
         {
-            var staticFilePath = _fileSystem.Path.Combine(Folders.Videos, $"{Guid.NewGuid()}.mp4");
+            var extension = Path.GetExtension(video.FileName);
+            var staticFilePath = _fileSystem.Path.Combine(Folders.Videos, $"{Guid.NewGuid()}{extension}");
             var savingPath = _fileSystem.Path.Combine(Folders.StaticFolderRoot, staticFilePath);
             using var fileStream = new FileStream(savingPath, FileMode.CreateNew);
             await video.CopyToAsync(fileStream);
@@ -68,7 +69,8 @@ namespace VideoHub.Services.Services
 
         private async Task<string> SaveImagePreview(IFormFile image)
         {
-            var staticFilePath = _fileSystem.Path.Combine(Folders.ImagePreview, $"{Guid.NewGuid()}.jpg");
+            var extension = Path.GetExtension(image.FileName);
+            var staticFilePath = _fileSystem.Path.Combine(Folders.ImagePreview, $"{Guid.NewGuid()}{extension}");
             var savingPath = _fileSystem.Path.Combine(Folders.StaticFolderRoot, staticFilePath);
             using var fileStream = new FileStream(savingPath, FileMode.CreateNew);
             await image.CopyToAsync(fileStream);

@@ -14,7 +14,9 @@ namespace VideoHub.Api
         {
             services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
             services.AddSingleton<IVideosRepository, VideosRepository>();
+            services.AddSingleton<IChannelsRepository, ChannelsRepository>();
             services.AddSingleton<IVideosService, VideosService>();
+            services.AddSingleton<IChannelsService, ChannelsService>();
             services.AddSingleton<IFileSystem, FileSystem>();
         }
     }

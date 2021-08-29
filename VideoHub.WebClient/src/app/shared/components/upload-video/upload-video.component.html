@@ -1,5 +1,5 @@
 <div class="top-container"
-     [class.upload-in-progress]="isUploadInProgress">
+     [class.upload-in-progress]="isLoadInProgress$ | async">
     <mat-spinner></mat-spinner>
     <div class="non-loading-content">
         <h2 mat-dialog-title>Upload New Video</h2>
@@ -39,6 +39,27 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
+                    <mat-label>Channel</mat-label>
+                    <mat-select formControlName="channel"
+                                panelClass="channel-select-panel"
+                                class="channel-select"
+                                required>
+                        <mat-select-trigger class="channel-select-trigger">
+                            <img [src]="channelControlValue.imageUrl" />
+                            <span>{{channelControlValue.name}}</span>
+                        </mat-select-trigger>
+                        <mat-option [value]="channel"
+                                    class="channel-option"
+                                    *ngFor="let channel of channels$ | async as channels">
+                            <img [src]="channel.imageUrl" />
+                            <span>{{channel.name}}</span>
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="channelControl.hasError('required')">
+                        Channel is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
                     <mat-label>Video File</mat-label>
                     <div class="file-input-container">
                         <input type="file"
@@ -70,7 +91,7 @@
                     <mat-label>Video Preview Image</mat-label>
                     <div class="file-input-container">
                         <input type="file"
-                               accept="accept=.png,.jpg,.jpeg"
+                               accept="accept=.png,.jpg,.jpeg,.webp"
                                required
                                hidden
                                (change)="onImagePreviewChange($event)"

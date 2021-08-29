@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using VideoHub.Identity.Settings;
+using VideoHub.Identity.Utils;
 
 namespace VideoHub.Identity
 {
@@ -35,11 +35,11 @@ namespace VideoHub.Identity
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<AppSettings> appsettings)
         {
-            if (env.IsDevelopment())
+            if (env.IsCustomDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
             }
+
             app.UseCors(options => options
                 .WithOrigins(appsettings.Value.ClientUrls)
                 .AllowAnyMethod()

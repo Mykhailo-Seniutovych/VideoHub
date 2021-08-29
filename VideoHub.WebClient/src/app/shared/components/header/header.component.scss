@@ -15,9 +15,12 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     background-color: $body-background-color;
 
-    .logo {
+    .logo-container {
         height: 100%;
-        padding: 5px 0;
+        padding: 5px;
+        img {
+            height: 100%;
+        }
     }
 
     .header-menu {
@@ -39,7 +42,7 @@
             height: 100%;
             flex-grow: 1;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            padding: 0 80px 0 32px;
+            padding: 0 80px 0 48px;
 
             &:focus {
                 outline-width: 0;

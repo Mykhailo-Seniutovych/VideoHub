@@ -3,15 +3,15 @@ version: '3.4'
 services:
   videohub.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      #- ASPNETCORE_ENVIRONMENT=Development-LAN
+      #- ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Development-LAN
   videohub.identity:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      #- ASPNETCORE_ENVIRONMENT=Development-LAN
+      #- ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Development-LAN
   videohub.webclient:
     build:
-      dockerfile: ./Dockerfile-Development
-      #dockerfile: ./Dockerfile-Development_LAN
+      #dockerfile: ./Dockerfile-Development
+      dockerfile: ./Dockerfile-Development_LAN
     environment:
       NODE_ENV: development

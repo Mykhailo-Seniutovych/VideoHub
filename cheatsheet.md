@@ -7,4 +7,4 @@ dotnet ef migrations script RenameUrlToPath --output ./Migrations/Scripts/{numbe
 #Update DB
 docker ps
 docker commit {ID} michael400/videohub.db
-push from docker desktop
+restart docker desktop to see new image, and push from docker desktop

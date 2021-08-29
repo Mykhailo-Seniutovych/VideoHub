@@ -111,3 +111,10 @@ $progress-bar-height: 4px;
         }
     }
 }
+
+.video-container.normal-screen {
+    .video {
+        width: 100%;
+        max-height: 600px;
+    }
+}

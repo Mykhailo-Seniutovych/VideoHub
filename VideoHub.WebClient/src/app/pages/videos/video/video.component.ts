@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener, Input, ViewChild } from "@angular/core";
+import { Component, ElementRef, HostListener, Input, OnDestroy, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatSliderChange } from "@angular/material/slider";
+import { Subscription } from "rxjs";
 import { ThemePalette } from "@angular/material/core";
 
 type ScreenMode = "normal" | "custom-fullscreen" | "default-fullscreen";
@@ -8,7 +10,7 @@ type ScreenMode = "normal" | "custom-fullscreen" | "default-fullscreen";
     templateUrl: "./video.component.html",
     styleUrls: ["./video.component.scss"]
 })
-export class VideoComponent {
+export class VideoComponent implements OnDestroy {
 
     @ViewChild("video") videoRef: ElementRef<HTMLVideoElement>;
     @ViewChild("videoContainer") videoContainerRef: ElementRef<HTMLDivElement>;
@@ -32,6 +34,20 @@ export class VideoComponent {
     videoDuration: string;
     color: ThemePalette = "primary";
     screenMode: "normal" | "custom-fullscreen" | "default-fullscreen" = "normal";
+    private isDialogOpened = false;
+
+    subscriptions: Subscription[] = [];
+
+    constructor(private readonly dialog: MatDialog) {
+        this.subscriptions.push(
+            this.dialog.afterOpened.subscribe(() => this.isDialogOpened = true));
+        this.subscriptions.push(
+            this.dialog.afterAllClosed.subscribe(() => this.isDialogOpened = false));
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach(s => s.unsubscribe());
+    }
 
     onDurationChanged(): void {
         this.videoDuration = this.getFormattedTime(this.videoEl.duration);
@@ -43,6 +59,10 @@ export class VideoComponent {
 
     @HostListener("document:keydown", ["$event"])
     onKeyDown(event: KeyboardEvent): void {
+        if (this.isDialogOpened) {
+            return;
+        }
+
         if (event.key === "ArrowLeft") {
             this.rewind();
         } else if (event.key === "ArrowRight") {
@@ -55,7 +75,6 @@ export class VideoComponent {
         } else if (event.key === "m") {
             this.toggleMuted();
         }
-        console.log(event);
     }
 
     togglePlay(): void {

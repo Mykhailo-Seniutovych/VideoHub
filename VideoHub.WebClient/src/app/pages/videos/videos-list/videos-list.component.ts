@@ -5,7 +5,8 @@ import { Router } from "@angular/router";
 import { SearchService } from "./../../../shared/services/search.service";
 import { switchMap } from "rxjs/operators";
 import { Video } from "../models";
-import { VideosService } from "./../services/videos-service";
+import { VideosService } from "../services/videos.service";
+
 @Component({
     selector: "app-videos-list",
     templateUrl: "./videos-list.component.html",

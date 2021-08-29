@@ -102,3 +102,9 @@ button.mat-flat-button.mat-primary.mat-button-disabled {
 .mat-form-field-required-marker {
     color: $error-color;
 }
+
+input[type="search"] {
+    border-radius: 0;
+    -webkit-appearance: none;
+    -webkit-border-radius:0px;
+}

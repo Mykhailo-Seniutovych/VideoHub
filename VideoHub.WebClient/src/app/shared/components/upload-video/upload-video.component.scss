@@ -35,9 +35,9 @@
     }
 }
 
-
 mat-dialog-content.mat-dialog-content {
     flex-grow: 1;
+    max-height: inherit;
 
     .upload-form {
         display: flex;
@@ -65,6 +65,42 @@ mat-dialog-content.mat-dialog-content {
             position: absolute;
             right: 0;
             bottom: 10px;
+        }
+    }
+}
+@mixin channelImage {
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+::ng-deep {
+    .channel-select {
+        .mat-select-trigger {
+            height: 25px;
+
+            .channel-select-trigger {
+                display: flex;
+                align-items: center;
+
+                img {
+                    @include channelImage;
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .channel-select-panel {
+        .channel-option {
+            .mat-option-text {
+                display: flex;
+                align-items: center;
+
+                img {
+                    @include channelImage;
+                }
+            }
         }
     }
 }

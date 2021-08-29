@@ -1,5 +1,5 @@
 import { AuthService } from "src/app/authorization";
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, ViewChild } from "@angular/core";
 import { MainNavigationService } from "./../../services/main-navigation.service";
 import { MatDialog } from "@angular/material/dialog";
 import { PAGE_ROUTES } from "src/app/utils";
@@ -31,7 +31,7 @@ export class HeaderComponent {
         private readonly navigationService: MainNavigationService,
         private readonly screenService: ScreenService,
         private readonly router: Router,
-        public readonly dialog: MatDialog) {
+        private readonly dialog: MatDialog) {
     }
 
     @HostBinding("class.search-activated") get searchActivated(): boolean {
@@ -48,6 +48,13 @@ export class HeaderComponent {
 
     onMenuClicked(): void {
         this.navigationService.toggleOpened();
+    }
+
+    @HostListener("document:keydown", ["$event"])
+    onKeyDown(event: KeyboardEvent): void {
+        if (event.key === "Enter") {
+            this.onSearchClicked();
+        }
     }
 
     async onSearchClicked(): Promise<void> {

@@ -4,7 +4,7 @@ import { Component, OnInit } from "@angular/core";
 import { EMPTY, Observable } from "rxjs";
 import { SnackBarService } from "./../../../shared/services/snackbar.service";
 import { VideoDetails } from "../models";
-import { VideosService } from "../services/videos-service";
+import { VideosService } from "../services/videos.service";
 
 @Component({
     selector: "app-video-details",
