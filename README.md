@@ -3,4 +3,3 @@
 * When starting a debug session you might face the error _Docker debugging failed: Failed to create the certificate_. Check outh [this answer on github](https://github.com/microsoft/DockerTools/issues/99#issuecomment-457750862) that might help you.
 * To debug the projects on Docker, and be able to access it from LAN, you must allow ports 5000, 5001, 5002 for inbound connections inside your Firewall
 	* If you try to debug it in IIS Express on LAN, [make sure the site will be available on LAN](https://stackoverflow.com/a/42989832/7111692)
-
